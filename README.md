@@ -78,6 +78,7 @@ Now, you may be wondering, why ResNet? ResNet, short for Residual Network,is a p
 ## Training the Models
 <p>We employed the Imagenet dataset to represent the "other" class, while utilizing labeled production data for the "plant" class. The choice of Imagenet stemmed from time constraints, as we lacked the capacity to individually examine over 300,000 unlabeled (???) images to identify non-plant ones. The imagenet dataset was taken from <cite>Kaggle</cite> (<a href="https://www.kaggle.com/datasets/ifigotin/imagenetmini-1000">source</a>). Consequently, we opted to employ the best-performing model to identify these images and manually review them later. By doing so, we can extract non-plant images, which are subsequently used to fine-tune the top model. This process takes place in step 5.</p>
 
+The python script for training all three models can be found in the file <cite>train_classifier.py</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/train_classifier.py">source</a>)
 
 
 <div style="display: flex; justify-content: space-between;">
@@ -96,55 +97,53 @@ Now, you may be wondering, why ResNet? ResNet, short for Residual Network,is a p
 </div>
 
 
-
-
 ## Evaluation of Model Performance and selection of the Best Model
 
 The performance of each model was evaluated based on loss (binary cross entropy), accuracy and F1 score. Model 2 showed the best performance of all three models with a loss, accuracy and F1 score of 0.431, 0.925 and  0.953 respectively. Consequently, we proceeded with Model 2. 
 
-<div style="text-align: center;">
-  <table>
-    <tr>
-      <th>Metrics \ Models</th>
-      <th>V1</th>
-      <th><span style="color:orange">V2</span></th>
-      <th>V3</th>
-    </tr>
-    <tr>
-      <td>Loss</td>
-      <td>0.435</td>
-      <td><span style="color:orange">0.431</span></td>
-      <td>0.443</td>
-    </tr>
-    <tr>
-      <td>Accuracy</td>
-      <td>0.918</td>
-      <td><span style="color:orange">0.925</span></td>
-      <td>0.924</td>
-    </tr>
-    <tr>
-      <td>F1 Score</td>
-      <td>0.949</td>
-      <td><span style="color:orange">0.953</span></td>
-      <td>0.952</td>
-    </tr>
-  </table>
+<div style="margin: auto; text-align: center;">
+  <div style="display: inline-block;">
+    <table>
+      <tr>
+        <th>Metrics \ Models</th>
+        <th>V1</th>
+        <th><span style="color:orange">V2</span></th>
+        <th>V3</th>
+      </tr>
+      <tr>
+        <td>Loss</td>
+        <td>0.435</td>
+        <td><span style="color:orange">0.431</span></td>
+        <td>0.443</td>
+      </tr>
+      <tr>
+        <td>Accuracy</td>
+        <td>0.918</td>
+        <td><span style="color:orange">0.925</span></td>
+        <td>0.924</td>
+      </tr>
+      <tr>
+        <td>F1 Score</td>
+        <td>0.949</td>
+        <td><span style="color:orange">0.953</span></td>
+        <td>0.952</td>
+      </tr>
+    </table>
+  </div>
 </div>
 
 
-# Room to improve, as model is certain dirt is plant 
+# Room to improve: motivation for finetuning
 
 While the plant classifier achieves a high level of accuracy, there is still room for improvement. Currently, the model incorrectly classifies dirt as a plant, which suggests that it may be focusing too much on the background of the image rather than the low-level features that distinguish plants from other objects. To address this issue, we plan to fine-tune the model using non-plant images from the production dataset. 
 
 ![images classified in incorrectly](./dirt.png)
 
-
 ## Finetuning Best Performance Model on Non-Plant Images from the production data
 
 Note: add that we did all this for all models but model 2 still peformed the best
 
-
-The provided production data consists of more than 400,000 images, but only a certain number of labels were provided. We filtered out the images that did not have labels and used the previously trained classifier (Model 2) to identify which images without labels were not of plants. We fed the images without labels into the classifier and retained all images with a probability of being classified as a plant between 0 and 0.6. Note that the classifier's output is the probability of an image being a plant (p(x = plant)).Next, we manually reviewed all of the retained images and extracted the images that were of something other than plants. We used those images to fine-tune the classifier.
+The provided production data consists of more than 400,000 images, but only a certain number of labels were provided. We filtered out the images that did not have labels and used the previously trained classifier (Model 2) to identify which images without labels were not of plants. We fed the images without labels into the classifier and retained all images with a probability of being classified as a plant between 0 and 0.6. Recall that the classifier's output is the probability of an image being a plant (i.e P(x = plant)).Next, we manually reviewed all of the retained images and extracted the images that were of something other than plants. We used those images to fine-tune the classifier.
 
 In summary the following steps were taken: 
 
@@ -156,12 +155,32 @@ In summary the following steps were taken:
 6. Create a new dataset with the verified non-plant images and fine-tune the pre-trained model.
 
 
-In the below pictures steps 2 -6 are visualised: 
+In the jupyter notebook <cite>Find_OtherImgs.ipynb</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/Find_OtherImgs.ipynb">source</a>) you can follow steps 1-6 in more detail.
 
+In the below pictures steps 2-6 are visualised: 
 ![Finetune classifier on images the model performance poorly on](./finetune_model.png)
 
 
-Below are example of images manually labeled as other in step 5
+During the manual labeling process (Step 5), the following guidelines were used to classify an image as "Other":
+1. Any image that does not contain a plant.
+2. Any image that would not be suitable for the downstream task.
+While the first point is straightforward, the second point is more subjective and requires some judgment. To implement the second point, we excluded images that were either too blurry or too zoomed-in, as they were not suitable for further analysis.
+
+<div style="display: flex; justify-content: space-between;">
+  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
+    <h2 style="font-weight: bold;">No Plant Image</h2>
+    <p>Image not containing a plant</p>
+    <img src="noPlant.png" alt="no plant" width="100px" height="100px">
+  </div>
+  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
+    <h2 style="font-weight: bold;">Bad Quality Plant Image </h2>
+    <p>Image that contains a plant but not of good quality for the downstream task </p>
+    <img src="badQuality.png" alt="bad plant" width="100" height="100">
+  </div>
+</div>
+
+
+Below are additional examples of images that were manually labeled as "other" in step 5 and clearly satisfy guideline number 1 mentioned earlier.
 
 ![Images identified as other](./other.png)
 
