@@ -9,15 +9,15 @@ author:
   name: Plant Classifier
   url: https://norahellstadius.github.io/ 
 
-  sidebar:
-  - title: "Navigation"
-    image: /assets/images/logo.png
-    image_alt: "Logo"
-    text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus mattis lorem, vel consequat mi pellentesque vel. Sed eu aliquam augue."
-    nav:
-      - title: "Home"
-        url: /
-      - title: "About"
-        url: /about
-      - title: "Contact"
-        url: /contact
+sidebar:
+- title: "Navigation"
+  image: /assets/images/logo.png
+  image_alt: "Logo"
+  text: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed tempus mattis lorem, vel consequat mi pellentesque vel. Sed eu aliquam augue."
+  nav:
+    - title: "Home"
+      url: /
+    - title: "About"
+      url: /about
+    - title: "Contact"
+      url: /contact
