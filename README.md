@@ -28,7 +28,7 @@ The development of an accurate plant classifier involved the following steps:
 
 
 The modeling pipeline can be visualized as follows:
-![Pipeline](./pipline.png)
+![Pipeline](images/pipline.png)
 
 ## Experimented with different architectures to find best
 
@@ -61,7 +61,7 @@ Three different architectures were explored, all utilizing the ResNet50 model as
 <br>
 
 
-![Summary of three models explored](./models.png)
+![Summary of three models explored](images/models.png)
 
 
 <div align="center"><div style="background-color: #ffab40; padding: 10px;display: inline-block; color: black;">
@@ -86,13 +86,13 @@ The python script for training all three models can be found in the file <cite>t
     <h2 style="font-weight: bold;">Other</h2>
     <p><strong>What:</strong> Imagenet</p>
     <p><strong>Size:</strong> 1600 (train), 200 (val), 200 (test)</p>
-    <img src="imagenet.png" alt="Other Image" width="100px" height="100px">
+    <img src="images/imagenet.png" alt="Other Image" width="100px" height="100px">
   </div>
   <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
     <h2 style="font-weight: bold;">Plant</h2>
     <p><strong>What:</strong> Labeled production data</p>
     <p><strong>Size:</strong> 1600 (train), 200 (val), 200 (test)</p>
-    <img src="plant_img.png" alt="Plant Image" width="100" height="100">
+    <img src="images/plant_img.png" alt="Plant Image" width="100" height="100">
   </div>
 </div>
 
@@ -137,7 +137,7 @@ The performance of each model was evaluated based on loss (binary cross entropy)
 
 While the plant classifier achieves a high level of accuracy, there is still room for improvement. Currently, the model incorrectly classifies dirt as a plant, which suggests that it may be focusing too much on the background of the image rather than the low-level features that distinguish plants from other objects. To address this issue, we plan to fine-tune the model using non-plant images from the production dataset. 
 
-![images classified in incorrectly](./dirt.png)
+![images classified in incorrectly](images/dirt.png)
 
 ## Finetuning Best Performance Model on Non-Plant Images from the production data
 
@@ -158,7 +158,7 @@ In summary the following steps were taken:
 In the jupyter notebook <cite>Find_OtherImgs.ipynb</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/Find_OtherImgs.ipynb">source</a>) you can follow steps 1-6 in more detail.
 
 In the below pictures steps 2-6 are visualised: 
-![Finetune classifier on images the model performance poorly on](./finetune_model.png)
+![Finetune classifier on images the model performance poorly on](images/finetune_model.png)
 
 
 During the manual labeling process (Step 5), the following guidelines were used to classify an image as "Other":
@@ -170,19 +170,19 @@ While the first point is straightforward, the second point is more subjective an
   <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
     <h2 style="font-weight: bold;">No Plant Image</h2>
     <p>Image not containing a plant</p>
-    <img src="noPlant.png" alt="no plant" width="100px" height="100px">
+    <img src="images/noPlant.png" alt="no plant" width="100px" height="100px">
   </div>
   <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
     <h2 style="font-weight: bold;">Bad Quality Plant Image </h2>
     <p>Image that contains a plant but not of good quality for the downstream task </p>
-    <img src="badQuality.png" alt="bad plant" width="100" height="100">
+    <img src="images/badQuality.png" alt="bad plant" width="100" height="100">
   </div>
 </div>
 
 
 Below are additional examples of images that were manually labeled as "other" in step 5 and clearly satisfy guideline number 1 mentioned earlier.
 
-![Images identified as other](./other.png)
+![Images identified as other](images/other.png)
 
 In step 6, we use a weighted loss function movited by the fact that rather the farmer retake image, than feed low-quality uncertain image downstream
 
