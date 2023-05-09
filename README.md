@@ -1,12 +1,10 @@
 # Plant Classifier to identify out of distribution images
 
-<center>**Big Picture Idea**.</center>
-<center>Alert farmer that they should retake the image.</center>
+<div align="center"><strong>Big Picture Idea</strong></div>
+<div align="center">Alert farmer that they should retake the image.</div>
 
+<div align="center"><strong>Goal of This Project</strong></div>
+<div align="center">Train a classifier to identify out-of-distribution images.</div>
 
-<center>**Goal of This Project**.</center>
-<center>Train a classifier to identify out-of-distribution images.</center>
-
-
-<center>**Motivation**.</center>
-<center>Improve the performance of the all deployed models.</center>
+<div align="center"><strong>Motivation</strong></div>
+<div align="center">Improve the performance of the all deployed models.</div>
