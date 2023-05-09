@@ -160,10 +160,12 @@ In the jupyter notebook <cite>Find_OtherImgs.ipynb</cite> (<a href="https://gith
 In the below pictures steps 2-6 are visualised: 
 ![Finetune classifier on images the model performance poorly on](images/finetune_model.png)
 
+### Guidance for manual labelling
 
 During the manual labeling process (Step 5), the following guidelines were used to classify an image as "Other":
 1. Any image that does not contain a plant.
 2. Any image that would not be suitable for the downstream task.
+
 While the first point is straightforward, the second point is more subjective and requires some judgment. To implement the second point, we excluded images that were either too blurry or too zoomed-in, as they were not suitable for further analysis.
 
 <div style="display: flex; justify-content: space-between;">
@@ -184,6 +186,8 @@ Below are additional examples of images that were manually labeled as "other" in
 
 ![Images identified as other](images/other.png)
 
+### Finetuning training details
+
 In step 6, we use a weighted loss function movited by the fact that rather the farmer retake image, than feed low-quality uncertain image downstream
 
 ```python
@@ -193,6 +197,8 @@ In step 6, we use a weighted loss function movited by the fact that rather the f
         weighted_bce_loss = bce_loss * weight_matrix
         return weighted_bce_loss
 ```
+
+More detail of how the classifies was finetunes can be found in the python script <cite>finetune_classifiers.py</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/finetune_classifiers.py">source</a>)
 
 ### Performance
 
