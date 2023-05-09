@@ -1,10 +1,17 @@
-# <div align="center"><strong>Plant Classifier to identify out of distribution images</strong></div>
+# Plant Classifier to identify out of distribution images
 
 <div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Big Picture Idea</strong></div></div>
 <div align="center"><div style="background-color: lightgrey; padding: 5px;">Alert farmer that they should retake the image.</div></div>
+<br>
 
 <div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Goal of This Project</strong></div></div>
 <div align="center"><div style="background-color: lightgrey; padding: 5px;">Train a classifier to identify out-of-distribution images.</div></div>
+<br>
 
 <div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Motivation</strong></div></div>
 <div align="center"><div style="background-color: lightgrey; padding: 5px;">Improve the performance of all deployed models.</div></div>
+<br>
+
+
+![Image Description](./image_file.png)
+
