@@ -33,21 +33,29 @@ Three different architectures were explored, all utilizing the ResNet50 model as
 - Architecture: In this model, a combination of convolutional layers and max pooling is added along with a dense layer on top of the ResNet50 backbone.
 - Convolutional layers and max pooling: These layers allow the model to extract spatial features from the input data effectively.
 
+|                         |                          |                          |
+|-------------------------|--------------------------|--------------------------|
+| <div style="background-color: #f1f1f1; padding: 10px;"> Model 1 (V1):
+- Architecture: This model consists of a single dense layer with 150 nodes along with a final classification layer.
+- Techniques for avoiding overfitting: Batch normalization and dropout are applied to prevent overfitting, ensuring better generalization.</div> | <div style="background-color: #f1f1f1; padding: 10px;"> Model 2 (V2):
+- Architecture: This model is more complex, comprising a total of four dense layers, including the final classification layers, built on the ResNet50 backbone.
+- Techniques for avoiding overfitting: Similar to Model 1, batch normalization is employed to improve the generalisation.</div> | <div style="background-color: #f1f1f1; padding: 10px;"> Model 3 (V3):
+- Architecture: In this model, a combination of convolutional layers and max pooling is added along with a dense layer on top of the ResNet50 backbone.
+- Convolutional layers and max pooling: These layers allow the model to extract spatial features from the input data effectively.</div> |
+
+
 By exploring these different architectures, the aim is to identify the most suitable approach for the given task of image classification using ResNet50 as the backbone. 
 
 ![Summary of three models explored](./models.png)
 
 The performance of each model was evaluated based on loss (binary cross entropy), accuracy and F1 score. Model 2 showed the best performance of all three models with a loss, accuracy and F1 score of 0.431, 0.925 and  0.953 respectively. 
 
-<div style="text-align:center">
 
 | **Metrics \ Models** | **V1** | <span style="color:orange">**V2**</span> | **V3** |
 |:--------------------:|:------:|:------:|:------:|
 | **Loss**             | 0.435  | <span style="color:orange">0.431</span>  | 0.443  |
 | **Accuracy**         | 0.918  | <span style="color:orange">0.925</span>  | 0.924  |
 | **F1 Score**         |  0.949 | <span style="color:orange">0.953</span>  | 0.952  |
-
-</div>
 
 ### Finetuning Best Performance Model
 
