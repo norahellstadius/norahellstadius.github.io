@@ -62,11 +62,11 @@ Three different architectures were explored, all utilizing the ResNet50 model as
 ## Training the Models
 TODO: describe which dataset was used (i.e imagenet)
 
+We employed the Imagenet dataset to represent the "other" class, while utilizing labeled production data for the "plant" class. The choice of Imagenet stemmed from time constraints, as we lacked the capacity to individually examine over 300,000 unlabeled images to identify non-plant ones. Consequently, we opted to employ the best-performing model to identify these images and manually review them later. By doing so, we can extract non-plant images, which are subsequently used to fine-tune the top model. This process takes place in step 5.
 
 ## Evaluation of Model Performance and selection of the Best Model
 
-The performance of each model was evaluated based on loss (binary cross entropy), accuracy and F1 score. Model 2 showed the best performance of all three models with a loss, accuracy and F1 score of 0.431, 0.925 and  0.953 respectively. 
-
+The performance of each model was evaluated based on loss (binary cross entropy), accuracy and F1 score. Model 2 showed the best performance of all three models with a loss, accuracy and F1 score of 0.431, 0.925 and  0.953 respectively. Consequently, we proceeded with Model 2. 
 
 | **Metrics \ Models** | **V1** | <span style="color:orange">**V2**</span> | **V3** |
 |:--------------------:|:------:|:------:|:------:|
@@ -76,7 +76,8 @@ The performance of each model was evaluated based on loss (binary cross entropy)
 
 ## Finetuning Best Performance Model on Non-Plant Images from the production data
 
-Procedding with model 2, the model is finetuned on images it has difficulity to classifiy as other. 
+Note: add that we did all this for all models but model 2 still peformed the best
+
 
 The provided production data consists of more than 400,000 images, but only a certain number of labels were provided. We filtered out the images that did not have labels and used the previously trained classifier (Model 2) to identify which images without labels were not of plants. We fed the images without labels into the classifier and retained all images with a probability of being classified as a plant between 0 and 0.6. Note that the classifier's output is the probability of an image being a plant (p(x = plant)).Next, we manually reviewed all of the retained images and extracted the images that were of something other than plants. We used those images to fine-tune the classifier.
 
