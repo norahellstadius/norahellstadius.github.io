@@ -1,4 +1,8 @@
-# Plant Classifier to identify out of distribution images
+<div align="center">
+  <h1>Plant classifier to identify out of distribution images</h1>
+</div>
+
+## Overiew of the problem
 
 <div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Big Picture Idea</strong></div></div>
 <div align="center"><div style="background-color: lightgrey; padding: 5px;">Alert farmer that they should retake the image.</div></div>
@@ -12,14 +16,26 @@
 <div align="center"><div style="background-color: lightgrey; padding: 5px;">Improve the performance of all deployed models.</div></div>
 <br>
 
-## Overview of the pipline
+During the exploratory analysis of the production data, it was observed that the presence of non-plant images was affecting the quality of the data and subsequently reducing the accuracy of the deployed models. To address this issue, a classifier was developed and trained with the aim of filtering out unsatisfactory images and ensuring that only high-quality images are fed into the models. The primary objective is to create a system that alerts farmers to retake an image if it is classified as out-of-distribution.
 
+
+## Modeling Pipeline
+
+The development of an accurate plant classifier involved the following steps:
+
+
+1. **Experiment with Three Different Architectures:** Three different architectures were explored, each utilizing the ResNet50 model as the backbone. These architectures introduced variations in terms of the number of dense layers, the inclusion of batch normalization and dropout, and the utilization of convolutional layers with max pooling. The objective was to identify the most suitable approach for the task of image classification using ResNet50 as the backbone.
+2. **Training the Models:** The models were trained using a combination of imagenet data, which represented the "other" class, and plant images from the production data that had labels. 
+3. **Evaluation of Model Performance:** The performance of each trained model was evaluated using metrics such as loss (binary cross entropy), accuracy, and F1 score. 
+4. **Selection of the Best Model:** Based on the evaluation results, the model that exhibited the best performance in terms of loss, accuracy, and F1 score was selected as the best model for further refinement.
+5. **Fine-Tuning on Non-Plant Images:** The selected best model was further fine-tuned using a dataset comprised of images from the production data that were identified as non-plant images. 
+
+
+The modeling pipeline can be visualized as follows:
 ![Pipeline](./pipline.png)
+## Experimented with different architectures to find best
 
-### Experimented with different architectures to find best
-
-Three different architectures were explored, all utilizing the ResNet50 model as the backbone .Each model introduces variations in terms of the number of dense layers, the inclusion of batch normalization and dropout, and the utilization of convolutional layers with max pooling. 
-
+Three different architectures were explored, all utilizing the ResNet50 model as the backbone.Each model introduces variations in terms of the number of dense layers, the inclusion of batch normalization and dropout, and the utilization of convolutional layers with max pooling. By exploring these different architectures, the aim is to identify the most suitable approach for the given task of image classification using ResNet50 as the backbone. Below is a brief description of each model.
 
 <div style="display: flex; justify-content: space-between;">
   <div style="background-color: lightgrey; padding: 10px; width: 30%;display: inline-block; color: black;">
@@ -39,12 +55,15 @@ Three different architectures were explored, all utilizing the ResNet50 model as
   </div>
 </div>
 
-
-
-
-By exploring these different architectures, the aim is to identify the most suitable approach for the given task of image classification using ResNet50 as the backbone. 
+<br>
 
 ![Summary of three models explored](./models.png)
+
+## Training the Models
+TODO: describe which dataset was used (i.e imagenet)
+
+
+## Evaluation of Model Performance and selection of the Best Model
 
 The performance of each model was evaluated based on loss (binary cross entropy), accuracy and F1 score. Model 2 showed the best performance of all three models with a loss, accuracy and F1 score of 0.431, 0.925 and  0.953 respectively. 
 
@@ -55,7 +74,7 @@ The performance of each model was evaluated based on loss (binary cross entropy)
 | **Accuracy**         | 0.918  | <span style="color:orange">0.925</span>  | 0.924  |
 | **F1 Score**         |  0.949 | <span style="color:orange">0.953</span>  | 0.952  |
 
-### Finetuning Best Performance Model
+## Finetuning Best Performance Model on Non-Plant Images from the production data
 
 Procedding with model 2, the model is finetuned on images it has difficulity to classifiy as other. 
 
@@ -73,7 +92,6 @@ In summary the following steps were taken:
 
 In the below pictures steps 2 -6 are visualised: 
 
-### 
 ![Finetune classifier on images the model performance poorly on](./finetune_model.png)
 
 
@@ -91,5 +109,5 @@ In step 6, we use a weighted loss function movited by the fact that rather the f
         return weighted_bce_loss
 ```
 
-## Performance
+### Performance
 
