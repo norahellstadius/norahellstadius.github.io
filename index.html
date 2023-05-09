@@ -1,4 +1,4 @@
-<!-- 
+
 ## Overiew of the problem
 
 <div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Big Picture Idea</strong></div></div>
@@ -205,4 +205,4 @@ More detail of how the classifies was finetunes can be found in the python scrip
 
 
 
-## How to download the modelsc -->
+## How to download the modelsc

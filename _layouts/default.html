@@ -40,26 +40,4 @@
   </body>
 </html>
 
-{% if page.sidebar %}
-<div class="sidebar">
-  <div class="sidebar-content">
-    <div class="sidebar-header">
-      {% if page.sidebar.image %}
-      <img src="{{ page.sidebar.image }}" alt="{{ page.sidebar.image_alt }}" class="sidebar-image">
-      {% endif %}
-      <h2 class="sidebar-title">{{ page.sidebar.title }}</h2>
-    </div>
-    <div class="sidebar-nav">
-      <p class="sidebar-text">{{ page.sidebar.text }}</p>
-      <ul>
-        {% for item in page.sidebar.nav %}
-        <li{% if item.url == page.url %} class="active"{% endif %}><a href="{{ item.url }}">{{ item.title }}</a></li>
-        {% endfor %}
-      </ul>
-    </div>
-  </div>
-</div>
-{% endif %}
-<div class="main-content">
-  {{ content }}
-</div>
+_
