@@ -1,4 +1,4 @@
-# Plant Classifier to identify out of distribution images
+# <div align="center"><strong>Plant Classifier to identify out of distribution images</strong></div>
 
 <div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Big Picture Idea</strong></div></div>
 <div align="center"><div style="background-color: lightgrey; padding: 5px;">Alert farmer that they should retake the image.</div></div>
