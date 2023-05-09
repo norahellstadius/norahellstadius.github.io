@@ -1,7 +1,3 @@
-<div align="center">
-  <h1>Plant classifier to identify out of distribution images</h1>
-</div>
-
 ## Overiew of the problem
 
 <div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Big Picture Idea</strong></div></div>
@@ -33,6 +29,7 @@ The development of an accurate plant classifier involved the following steps:
 
 The modeling pipeline can be visualized as follows:
 ![Pipeline](./pipline.png)
+
 ## Experimented with different architectures to find best
 
 Three different architectures were explored, all utilizing the ResNet50 model as the backbone.Each model introduces variations in terms of the number of dense layers, the inclusion of batch normalization and dropout, and the utilization of convolutional layers with max pooling. By exploring these different architectures, the aim is to identify the most suitable approach for the given task of image classification using ResNet50 as the backbone. Below is a brief description of each model.
@@ -57,12 +54,42 @@ Three different architectures were explored, all utilizing the ResNet50 model as
 
 <br>
 
+
 ![Summary of three models explored](./models.png)
 
-## Training the Models
-TODO: describe which dataset was used (i.e imagenet)
 
-We employed the Imagenet dataset to represent the "other" class, while utilizing labeled production data for the "plant" class. The choice of Imagenet stemmed from time constraints, as we lacked the capacity to individually examine over 300,000 unlabeled images to identify non-plant ones. Consequently, we opted to employ the best-performing model to identify these images and manually review them later. By doing so, we can extract non-plant images, which are subsequently used to fine-tune the top model. This process takes place in step 5.
+<div align="center"><div style="background-color: #ffab40; padding: 10px;display: inline-block; color: black;">
+Before we proceed with model training and evluation, we we will shed light on the rationale behind the decision of using transfer learning and specifically the use of Resnet.
+</div></div>
+
+<br>
+
+When confronted with the task of building an effective image classifier, transfer learning emerges as an invaluable technique in the realm of deep learning. Instead of starting from scratch and training a model on an entirely new dataset, transfer learning enables us to capitalize on the knowledge and insights gained from a pre-trained model. 
+
+Now, you may be wondering, why ResNet? ResNet, short for Residual Network,is a powerful deep learning architecture that has demonstrated state-of-the-art performance on various computer vision tasks. By leveraging the wisdom extracted from a large-scale dataset like ImageNet, we can save substantial computational resources and significantly reduce the time required for training.
+
+
+## Training the Models
+We employed the Imagenet dataset to represent the "other" class, while utilizing labeled production data for the "plant" class. The choice of Imagenet stemmed from time constraints, as we lacked the capacity to individually examine over 300,000 unlabeled (???) images to identify non-plant ones. Consequently, we opted to employ the best-performing model to identify these images and manually review them later. By doing so, we can extract non-plant images, which are subsequently used to fine-tune the top model. This process takes place in step 5.
+
+
+<div style="display: flex; justify-content: space-between;">
+  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
+    <h2>Other</h2>
+    <p><strong>What:</strong> Imagenet</p>
+    <p><strong>Size:</strong> 1600 (train), 200 (val), 200 (test)</p>
+    <img src="imagenet.png" alt="Other Image" width="100px" height="100px">
+  </div>
+  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
+    <h2>Plant</h2>
+    <p><strong>What:</strong> Labeled production data</p>
+    <p><strong>Size:</strong> 1600 (train), 200 (val), 200 (test)</p>
+    <img src="plant_img.png" alt="Plant Image" width="100" height="100">
+  </div>
+</div>
+
+
+
 
 ## Evaluation of Model Performance and selection of the Best Model
 
