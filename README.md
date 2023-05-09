@@ -32,6 +32,11 @@ The modeling pipeline can be visualized as follows:
 
 ## Experimented with different architectures to find best
 
+<div style="background-color: #4285f4; padding: 10px; text-align:center; color: black;">
+  <p> The binary classifier takes the form of P(x = Plant).</p>
+</div>
+
+<br>
 Three different architectures were explored, all utilizing the ResNet50 model as the backbone.Each model introduces variations in terms of the number of dense layers, the inclusion of batch normalization and dropout, and the utilization of convolutional layers with max pooling. By exploring these different architectures, the aim is to identify the most suitable approach for the given task of image classification using ResNet50 as the backbone. Below is a brief description of each model.
 
 <div style="display: flex; justify-content: space-between;">
@@ -75,13 +80,13 @@ We employed the Imagenet dataset to represent the "other" class, while utilizing
 
 <div style="display: flex; justify-content: space-between;">
   <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
-    <h2>Other</h2>
+    <h2 style="font-weight: bold;">Other</h2>
     <p><strong>What:</strong> Imagenet</p>
     <p><strong>Size:</strong> 1600 (train), 200 (val), 200 (test)</p>
     <img src="imagenet.png" alt="Other Image" width="100px" height="100px">
   </div>
   <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
-    <h2>Plant</h2>
+    <h2 style="font-weight: bold;">Plant</h2>
     <p><strong>What:</strong> Labeled production data</p>
     <p><strong>Size:</strong> 1600 (train), 200 (val), 200 (test)</p>
     <img src="plant_img.png" alt="Plant Image" width="100" height="100">
@@ -95,11 +100,41 @@ We employed the Imagenet dataset to represent the "other" class, while utilizing
 
 The performance of each model was evaluated based on loss (binary cross entropy), accuracy and F1 score. Model 2 showed the best performance of all three models with a loss, accuracy and F1 score of 0.431, 0.925 and  0.953 respectively. Consequently, we proceeded with Model 2. 
 
-| **Metrics \ Models** | **V1** | <span style="color:orange">**V2**</span> | **V3** |
-|:--------------------:|:------:|:------:|:------:|
-| **Loss**             | 0.435  | <span style="color:orange">0.431</span>  | 0.443  |
-| **Accuracy**         | 0.918  | <span style="color:orange">0.925</span>  | 0.924  |
-| **F1 Score**         |  0.949 | <span style="color:orange">0.953</span>  | 0.952  |
+<div style="text-align: center;">
+  <table>
+    <tr>
+      <th>Metrics \ Models</th>
+      <th>V1</th>
+      <th><span style="color:orange">V2</span></th>
+      <th>V3</th>
+    </tr>
+    <tr>
+      <td>Loss</td>
+      <td>0.435</td>
+      <td><span style="color:orange">0.431</span></td>
+      <td>0.443</td>
+    </tr>
+    <tr>
+      <td>Accuracy</td>
+      <td>0.918</td>
+      <td><span style="color:orange">0.925</span></td>
+      <td>0.924</td>
+    </tr>
+    <tr>
+      <td>F1 Score</td>
+      <td>0.949</td>
+      <td><span style="color:orange">0.953</span></td>
+      <td>0.952</td>
+    </tr>
+  </table>
+</div>
+
+
+# Room to improve, as model is certain dirt is plant 
+
+While the plant classifier achieves a high level of accuracy, there is still room for improvement. Currently, the model incorrectly classifies dirt as a plant, which suggests that it may be focusing too much on the background of the image rather than the low-level features that distinguish plants from other objects. To address this issue, we plan to fine-tune the model using non-plant images from the production dataset. 
+
+
 
 ## Finetuning Best Performance Model on Non-Plant Images from the production data
 
