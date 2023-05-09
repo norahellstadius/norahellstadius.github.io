@@ -21,27 +21,25 @@
 Three different architectures were explored, all utilizing the ResNet50 model as the backbone .Each model introduces variations in terms of the number of dense layers, the inclusion of batch normalization and dropout, and the utilization of convolutional layers with max pooling. 
 
 
-1. Model 1 (V1):
-- Architecture: This model consists of a single dense layer with 150 nodes along with a final classification layer.
-- Techniques for avoiding overfitting: Batch normalization and dropout are applied to prevent overfitting, ensuring better generalization.
+<div style="display: flex; justify-content: space-between;">
+  <div style="background-color: lightgrey; padding: 10px; width: 30%;display: inline-block; color: black;">
+    <h2>Model 1 (V1)</h2>
+    <p><strong>Architecture:</strong> This model consists of a single dense layer with 150 nodes along with a final classification layer.</p>
+    <p><strong>Techniques for avoiding overfitting:</strong> Batch normalization and dropout are applied to prevent overfitting, ensuring better generalization.</p>
+  </div>
+  <div style="background-color:lightgrey; padding: 10px; width: 30%;display: inline-block; color: black;">
+    <h2>Model 2 (V2)</h2>
+    <p><strong>Architecture:</strong> This model is more complex, comprising a total of four dense layers, including the final classification layers, built on the ResNet50 backbone.</p>
+    <p><strong>Techniques for avoiding overfitting:</strong> Similar to Model 1, batch normalization is employed to improve the generalisation.</p>
+  </div>
+  <div style="background-color: lightgrey; padding: 10px; width: 30%;display: inline-block; color: black;">
+    <h2>Model 3 (V3)</h2>
+    <p><strong>Architecture:</strong> In this model, a combination of convolutional layers and max pooling is added along with a dense layer on top of the ResNet50 backbone.</p>
+    <p><strong>Convolutional layers and max pooling:</strong> These layers allow the model to extract spatial features from the input data effectively.</p>
+  </div>
+</div>
 
-2. Model 2 (V2):
-- Architecture: This model is more complex, comprising a total of four dense layers, including the final classification layers, built on the ResNet50 backbone.
-- Techniques for avoiding overfitting: Similar to Model 1, batch normalization is employed to improve the generalisation.
 
-3. Model 3 (V3):
-- Architecture: In this model, a combination of convolutional layers and max pooling is added along with a dense layer on top of the ResNet50 backbone.
-- Convolutional layers and max pooling: These layers allow the model to extract spatial features from the input data effectively.
-
-|                         |                          |                          |
-|-------------------------|--------------------------|--------------------------|
-| <div style="background-color: #f1f1f1; padding: 10px;"> Model 1 (V1):
-- Architecture: This model consists of a single dense layer with 150 nodes along with a final classification layer.
-- Techniques for avoiding overfitting: Batch normalization and dropout are applied to prevent overfitting, ensuring better generalization.</div> | <div style="background-color: #f1f1f1; padding: 10px;"> Model 2 (V2):
-- Architecture: This model is more complex, comprising a total of four dense layers, including the final classification layers, built on the ResNet50 backbone.
-- Techniques for avoiding overfitting: Similar to Model 1, batch normalization is employed to improve the generalisation.</div> | <div style="background-color: #f1f1f1; padding: 10px;"> Model 3 (V3):
-- Architecture: In this model, a combination of convolutional layers and max pooling is added along with a dense layer on top of the ResNet50 backbone.
-- Convolutional layers and max pooling: These layers allow the model to extract spatial features from the input data effectively.</div> |
 
 
 By exploring these different architectures, the aim is to identify the most suitable approach for the given task of image classification using ResNet50 as the backbone. 
