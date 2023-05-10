@@ -164,7 +164,7 @@ The performance of each model was evaluated based on loss (binary cross entropy)
 </div>
 
 
-# Room to improve: motivation for finetuning
+## Room to improve: motivation for finetuning
 
 While the plant classifier achieves a high level of accuracy, there is still room for improvement. Currently, the model incorrectly classifies dirt as a plant, which suggests that it may be focusing too much on the background of the image rather than the low-level features that distinguish plants from other objects. To address this issue, we plan to fine-tune the model using non-plant images from the production dataset. 
 
