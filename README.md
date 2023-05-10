@@ -88,12 +88,12 @@ Three different architectures were explored, all utilizing the ResNet50 model as
 
 <br>
 
-<br>
-
 <div style="text-align:center;">
   <img src="images/models.png" alt="Summary of three models explored"/>
   <figcaption>Summary of three models explored</figcaption>
 </div>
+
+<br>
 
 <div align="center"><div style="background-color: #ffab40; padding: 10px;display: inline-block; color: black;">
 Before we proceed with model training and evaluation, we we will shed light on the rationale behind the decision of using transfer learning and specifically the use of Resnet.
@@ -167,7 +167,7 @@ While the plant classifier achieves a high level of accuracy, there is still roo
 
 <div style="text-align:center;">
   <img src="images/dirt.png" alt="Images classified in incorrectly by best performed model (v2)"/>
-  <figcaption>Images classified in incorrectly by best performed model (v2)</figcaption>
+  <figcaption>Images classified incorrectly by best performed model (v2)</figcaption>
 </div>
 
 ## Finetuning on non-plant images from the production data
@@ -180,12 +180,12 @@ The provided production data consists of more than 400,000 images, but only a ce
 
 In summary the following steps were taken: 
 
-1. Extract images from the production dataset that do not have labels.
-2. Select a random sample of 5000 images without labels from the extracted images.
-3. Use a pre-trained image classifier to predict the probability of each image belonging to a plant class.
-4. Keep the images with a probability less than or equal to 0.6 of belonging to a plant class.
-5. Visualize the selected images and manually verify which ones are non-plants.
-6. Create a new dataset with the verified non-plant images and fine-tune the pre-trained model.
+1. **Get Images with no labels:** Extract images from the production dataset that do not have labels.
+2. **Select random sample:** Select a random sample of 5000 images without labels from the extracted images.
+3. **Use trained classfier:** Use a pre-trained image classifier to predict the probability of each image belonging to a plant class.
+4. **Select images classified as non plant:** Keep the images with a probability less than or equal to 0.6 of belonging to a plant class.
+5. **Manually label:** Visualize the selected images and manually verify which ones are non-plants.
+6. **Fine tune model:** Create a new dataset with the verified non-plant images and fine-tune the pre-trained model.
 
 
 In the jupyter notebook <cite>Find_OtherImgs.ipynb</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/Find_OtherImgs.ipynb">source</a>) you can follow steps 1-6 in more detail.
@@ -216,11 +216,11 @@ While the first point is straightforward, the second point is more subjective an
     <img src="images/badQuality.png" alt="bad plant" width="100" height="100">
   </div>
 </div>
-
-
+<br>
+<br>
 <div style="text-align:center;">
   <img src="images/other.png" alt="Images that were manually labeled as 'other' in step 5 and clearly satisfy guideline number 1"/>
-  <figcaption>Images that were manually labeled as 'other' in step 5 and clearly satisfy guideline number 1</figcaption>
+  <figcaption>Sample of images that were manually labeled as 'other' in step 5 and clearly satisfy guideline number 1</figcaption>
 </div>
 
 ### Finetuning training details
@@ -235,7 +235,7 @@ In step 6, we use a weighted loss function movited by the fact that rather the f
         return weighted_bce_loss
 ```
 
-More detail of how the classifies was finetunes can be found in the python script <cite>finetune_classifiers.py</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/finetune_classifiers.py">source</a>)
+More details of how the classifiers were finetuned can be found in the python script <cite>finetune_classifiers.py</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/finetune_classifiers.py">source</a>)
 
 ## Performance
 
