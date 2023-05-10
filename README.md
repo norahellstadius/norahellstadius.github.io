@@ -1,7 +1,7 @@
 <section id="Introduction-section">
 </section>
 
-<title>Introduction</title>
+# Introduction
 
 In this project, our team collaborated with Babban Gona to create a two-part solution. Firstly, we developed a classifier that serves as a preliminary stage for all computer vision models. Secondly, we tackled the challenge of soil health assessment by implementing semantic segmentation and object detection techniques.
 <br>
