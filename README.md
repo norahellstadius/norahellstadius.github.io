@@ -18,7 +18,6 @@ In this project, our team collaborated with Babban Gona to create a two-part sol
 </section>
 
 
-<section id="Plant-Classifier-section">
 # Plant Classifier 
 
 First we will introduce the classifier that could be used upstream of all computer vision models.  
@@ -228,10 +227,10 @@ More detail of how the classifies was finetunes can be found in the python scrip
 ## Performance
 
 ## How to download the modelsc
-</section>
 
 
-<section id="Plant-Health-section">
+
+<!-- <section id="Plant-Health-section">
     <!-- content of the project 2 section -->
-</section>
+<!-- </section> --> 
 
