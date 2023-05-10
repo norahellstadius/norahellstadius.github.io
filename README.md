@@ -133,25 +133,25 @@ The performance of each model was evaluated based on loss (binary cross entropy)
       <tr>
         <th>Metrics \ Models</th>
         <th>V1</th>
-        <th><span style="color:orange">V2</span></th>
+        <th><span style="color: #ffab40">V2</span></th>
         <th>V3</th>
       </tr>
       <tr>
         <td>Loss</td>
         <td>0.435</td>
-        <td><span style="color:orange">0.431</span></td>
+        <td><span style="color: #ffab40">0.431</span></td>
         <td>0.443</td>
       </tr>
       <tr>
         <td>Accuracy</td>
         <td>0.918</td>
-        <td><span style="color:orange">0.925</span></td>
+        <td><span style="color: #ffab40">0.925</span></td>
         <td>0.924</td>
       </tr>
       <tr>
         <td>F1 Score</td>
         <td>0.949</td>
-        <td><span style="color:orange">0.953</span></td>
+        <td><span style="color: #ffab40">0.953</span></td>
         <td>0.952</td>
       </tr>
     </table>
@@ -165,9 +165,11 @@ While the plant classifier achieves a high level of accuracy, there is still roo
 
 ![images classified in incorrectly](images/dirt.png)
 
-## Finetuning Best Performance Model on Non-Plant Images from the production data
+## Finetuning on non-plant images from the production data
 
-Note: add that we did all this for all models but model 2 still peformed the best
+<div style="border: 2px solid  #ffab40; padding: 10px;">
+    <p><strong>Note:</strong> The below was done for all models (i.e v1, v2, v3) however model 2 (i.e v2) achieved the best performance and hence we proceed by explaining this section with only focusing on the finetuning of model 2.</p>
+</div>
 
 The provided production data consists of more than 400,000 images, but only a certain number of labels were provided. We filtered out the images that did not have labels and used the previously trained classifier (Model 2) to identify which images without labels were not of plants. We fed the images without labels into the classifier and retained all images with a probability of being classified as a plant between 0 and 0.6. Recall that the classifier's output is the probability of an image being a plant (i.e P(x = plant)).Next, we manually reviewed all of the retained images and extracted the images that were of something other than plants. We used those images to fine-tune the classifier.
 
