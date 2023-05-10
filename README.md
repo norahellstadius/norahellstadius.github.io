@@ -57,6 +57,7 @@ The development of an accurate plant classifier involved the following steps:
 
 <div style="text-align:center;">
   <img src="images/pipline.png" alt="The pipeline used for data preprocessing and model training"/>
+  <figcaption>The pipeline used for data preprocessing and model training</figcaption>
 </div>
 
 ## Experimented with different architectures to find best
@@ -91,6 +92,7 @@ Three different architectures were explored, all utilizing the ResNet50 model as
 
 <div style="text-align:center;">
   <img src="images/models.png" alt="Summary of three models explored"/>
+  <figcaption>Summary of three models explored</figcaption>
 </div>
 
 <div align="center"><div style="background-color: #ffab40; padding: 10px;display: inline-block; color: black;">
@@ -165,6 +167,7 @@ While the plant classifier achieves a high level of accuracy, there is still roo
 
 <div style="text-align:center;">
   <img src="images/dirt.png" alt="Images classified in incorrectly by best performed model (v2)"/>
+  <figcaption>Images classified in incorrectly by best performed model (v2)</figcaption>
 </div>
 
 ## Finetuning on non-plant images from the production data
@@ -190,6 +193,7 @@ In the jupyter notebook <cite>Find_OtherImgs.ipynb</cite> (<a href="https://gith
 
 <div style="text-align:center;">
   <img src="images/finetune_model.png" alt="Image visualizing the above 2-6 steps"/>
+  <figcaption>Image visualizing the above 2-6 steps</figcaption>
 </div>
 
 ### Guidance for manual labelling
@@ -216,6 +220,7 @@ While the first point is straightforward, the second point is more subjective an
 
 <div style="text-align:center;">
   <img src="images/other.png" alt="Images that were manually labeled as 'other' in step 5 and clearly satisfy guideline number 1"/>
+  <figcaption>Images that were manually labeled as 'other' in step 5 and clearly satisfy guideline number 1</figcaption>
 </div>
 
 ### Finetuning training details
