@@ -1,4 +1,4 @@
-<section id="main-section">
+<section id="Introduction-section">
 In this project, our team collaborated with Babban Gona to create a two-part solution. Firstly, we developed a classifier that serves as a preliminary stage for all computer vision models. Secondly, we tackled the challenge of soil health assessment by implementing semantic segmentation and object detection techniques.
 
 <div style="text-align:center; border: 2px solid #4285f4; padding: 10px;">
@@ -17,7 +17,9 @@ In this project, our team collaborated with Babban Gona to create a two-part sol
 <br>
 </section>
 
-# Out of Distribution Classifier 
+
+<section id="Plant-Classifier-section">
+# Plant Classifier 
 
 First we will introduce the classifier that could be used upstream of all computer vision models.  
 
@@ -225,6 +227,11 @@ More detail of how the classifies was finetunes can be found in the python scrip
 
 ## Performance
 
-
-
 ## How to download the modelsc
+</section>
+
+
+<section id="Plant-Health-section">
+    <!-- content of the project 2 section -->
+</section>
+
