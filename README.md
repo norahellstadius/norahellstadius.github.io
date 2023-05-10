@@ -76,7 +76,7 @@ Three different architectures were explored, all utilizing the ResNet50 model as
   <div style="background-color:lightgrey; padding: 10px; width: 30%; display: inline-block; color: black; text-align: center;">
     <h2>Model 2 (V2)</h2>
     <p><strong>Architecture:</strong> This model is more complex, comprising a total of four dense layers, including the final classification layers, built on the ResNet50 backbone.</p>
-    <p><strong>Techniques for avoiding overfitting:</strong> Similar to Model 1, batch normalization is employed to improve the generalisation.</p>
+    <p><strong>Techniques for avoiding overfitting:</strong> Similar to Model 1, batch normalization is employed to improve generalisation.</p>
   </div>
   <div style="background-color: lightgrey; padding: 10px; width: 30%; display: inline-block; color: black; text-align: center;">
     <h2>Model 3 (V3)</h2>
@@ -94,10 +94,8 @@ Three different architectures were explored, all utilizing the ResNet50 model as
 
 
 <div align="center"><div style="background-color: #ffab40; padding: 10px;display: inline-block; color: black;">
-Before we proceed with model training and evluation, we we will shed light on the rationale behind the decision of using transfer learning and specifically the use of Resnet.
+Before we proceed with model training and evaluation, we we will shed light on the rationale behind the decision of using transfer learning and specifically the use of Resnet.
 </div></div>
-
-<br>
 
 When confronted with the task of building an effective image classifier, transfer learning emerges as an invaluable technique in the realm of deep learning. Instead of starting from scratch and training a model on an entirely new dataset, transfer learning enables us to capitalize on the knowledge and insights gained from a pre-trained model. 
 
@@ -106,9 +104,6 @@ Now, you may be wondering, why ResNet? ResNet, short for Residual Network,is a p
 
 ## Training the Models
 <p>We employed the Imagenet dataset to represent the "other" class, while utilizing labeled production data for the "plant" class. The choice of Imagenet stemmed from time constraints, as we lacked the capacity to individually examine over 300,000 unlabeled (???) images to identify non-plant ones. The imagenet dataset was taken from <cite>Kaggle</cite> (<a href="https://www.kaggle.com/datasets/ifigotin/imagenetmini-1000">source</a>). Consequently, we opted to employ the best-performing model to identify these images and manually review them later. By doing so, we can extract non-plant images, which are subsequently used to fine-tune the top model. This process takes place in step 5.</p>
-
-The python script for training all three models can be found in the file <cite>train_classifier.py</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/train_classifier.py">source</a>)
-
 
 <div style="display: flex; justify-content: space-between;">
   <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
@@ -124,6 +119,8 @@ The python script for training all three models can be found in the file <cite>t
     <img src="images/plant_img.png" alt="Plant Image" width="100" height="100">
   </div>
 </div>
+
+During training, intially first layer of the ResNet50 model is frozen. This is done to prevent the pre-trained weights from being updated during training and to focus on fine-tuning the last added layers. The model is compiled with the Adam optimizer, binary cross-entropy loss function, and accuracy as the evaluation metric. An early stopping callback is also defined to stop training when the validation loss stops improving after 5 epochs. In the next step, the layers of the model are made trainable, and the model is trained for 2 more epochs with a lower learning rate.For more details on the training of all three models, please refer to the <cite>train_classifier.py</cite>  python script available in the repository at (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/train_classifier.py">source</a>)
 
 
 ## Evaluation of Model Performance and selection of the Best Model
@@ -230,6 +227,7 @@ In step 6, we use a weighted loss function movited by the fact that rather the f
 More detail of how the classifies was finetunes can be found in the python script <cite>finetune_classifiers.py</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/finetune_classifiers.py">source</a>)
 
 ## Performance
+
 
 ## How to use the classifier
 
