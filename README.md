@@ -3,7 +3,7 @@
 
 # Introduction
 
-In this project our team collaborated with Babban Gona team to create a two-part solution. Firstly, we developed a classifier that serves as a preliminary stage for all computer vision models. Secondly, we tackled the challenge of soil health assessment by implementing semantic segmentation and object detection techniques. The second 
+In this project our team collaborated with Babban Gona team to create a two-part solution. Firstly, we developed a classifier that serves as a preliminary stage for all computer vision models. Secondly, we tackled the challenge of soil health assessment by implementing semantic segmentation and object detection techniques. 
 
 <br>
 <div style="text-align:center; border: 2px solid #4285f4; padding: 10px;">
@@ -29,41 +29,17 @@ In this project our team collaborated with Babban Gona team to create a two-part
 # Plant Classifier 
 
 ## Overiew of the problem
-<div style="display: flex; align-items: center; justify-content: center;">
-  <div style="flex: 1; margin-right: 10px;">
-    <img src="images/picture.png" width="45%">
-  </div>
-  <div style="flex: 2; background-color: lightgrey; padding: 5px;">
-    <strong>Big Picture Idea</strong><br>
-    Alert farmer that they should retake the image.
-  </div>
-</div>
 
+<div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Big Picture Idea</strong></div></div>
+<div align="center"><div style="background-color: lightgrey; padding: 5px;">Alert farmer that they should retake the image.</div></div>
 <br>
 
-<div style="display: flex; align-items: center; justify-content: center;">
-  <div style="flex: 1; margin-right: 10px;">
-    <img src="images/goal.png" width="45%">
-  </div>
-  <div style="flex: 2; background-color: lightgrey; padding: 5px;">
-    <strong>Goal of This Project</strong><br>
-    Train a classifier to identify out-of-distribution images.
-  </div>
-</div>
-
+<div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Goal of This Project</strong></div></div>
+<div align="center"><div style="background-color: lightgrey; padding: 5px;">Train a classifier to identify out-of-distribution images.</div></div>
 <br>
 
-<div style="display: flex; align-items: center; justify-content: center;">
-  <div style="flex: 1; margin-right: 10px;">
-    <img src="images/motivation.png" width="45%">
-  </div>
-  <div style="flex: 2; background-color: lightgrey; padding: 5px;">
-    <strong>Motivation</strong><br>
-    Improve the performance of all deployed models.
-  </div>
-</div>
-
-
+<div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Motivation</strong></div></div>
+<div align="center"><div style="background-color: lightgrey; padding: 5px;">Improve the performance of all deployed models.</div></div>
 <br>
 
 During the exploratory analysis of the production data, it was observed that the presence of non-plant images was affecting the quality of the data and subsequently reducing the accuracy of the deployed models. To address this issue, a classifier was developed and trained with the aim of filtering out unsatisfactory images and ensuring that only high-quality images are fed into the models. The primary objective is to create a system that alerts farmers to retake an image if it is classified as out-of-distribution.
