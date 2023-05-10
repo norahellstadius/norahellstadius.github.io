@@ -55,9 +55,7 @@ The development of an accurate plant classifier involved the following steps:
 4. **Selection of the Best Model:** Based on the evaluation results, the model that exhibited the best performance in terms of loss, accuracy, and F1 score was selected as the best model for further refinement.
 5. **Fine-Tuning on Non-Plant Images:** The selected best model was further fine-tuned using a dataset comprised of images from the production data that were identified as non-plant images. 
 
-
-The modeling pipeline can be visualized as follows:
-![Pipeline](images/pipline.png)
+![Pipeline](images/pipline.png "The pipeline used for data preprocessing and model training.")
 
 ## Experimented with different architectures to find best
 
@@ -163,7 +161,7 @@ The performance of each model was evaluated based on loss (binary cross entropy)
 
 While the plant classifier achieves a high level of accuracy, there is still room for improvement. Currently, the model incorrectly classifies dirt as a plant, which suggests that it may be focusing too much on the background of the image rather than the low-level features that distinguish plants from other objects. To address this issue, we plan to fine-tune the model using non-plant images from the production dataset. 
 
-![images classified in incorrectly](images/dirt.png)
+![images classified in incorrectly](images/dirt.png "Images classified in incorrectly by best performed model (v2)")
 
 ## Finetuning on non-plant images from the production data
 
@@ -185,8 +183,7 @@ In summary the following steps were taken:
 
 In the jupyter notebook <cite>Find_OtherImgs.ipynb</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/Find_OtherImgs.ipynb">source</a>) you can follow steps 1-6 in more detail.
 
-In the below pictures steps 2-6 are visualised: 
-![Finetune classifier on images the model performance poorly on](images/finetune_model.png)
+![Finetune classifier on images the model performance poorly on](images/finetune_model.png "Image visualizing the above 2-6 steps")
 
 ### Guidance for manual labelling
 
@@ -210,9 +207,7 @@ While the first point is straightforward, the second point is more subjective an
 </div>
 
 
-Below are additional examples of images that were manually labeled as "other" in step 5 and clearly satisfy guideline number 1 mentioned earlier.
-
-![Images identified as other](images/other.png)
+![Images identified as other](images/other.png "images that were manually labeled as "other" in step 5 and clearly satisfy guideline number 1")
 
 ### Finetuning training details
 
