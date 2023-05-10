@@ -32,7 +32,7 @@ In this project our team collaborated with Babban Gona team to create a two-part
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="images/picture.png" width="50%">
+    <img src="images/picture.png" width="45%">
   </div>
   <div style="flex: 2; background-color: lightgrey; padding: 5px;">
     <strong>Big Picture Idea</strong><br>
@@ -44,7 +44,7 @@ In this project our team collaborated with Babban Gona team to create a two-part
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="your-image-url-here" width="100%">
+    <img src="images/goal.png" width="45%">
   </div>
   <div style="flex: 2; background-color: lightgrey; padding: 5px;">
     <strong>Goal of This Project</strong><br>
@@ -56,7 +56,7 @@ In this project our team collaborated with Babban Gona team to create a two-part
 
 <div style="display: flex; align-items: center;">
   <div style="flex: 1;">
-    <img src="your-image-url-here" width="100%">
+    <img src="images/motivation.png" width="45%">
   </div>
   <div style="flex: 2; background-color: lightgrey; padding: 5px;">
     <strong>Motivation</strong><br>
