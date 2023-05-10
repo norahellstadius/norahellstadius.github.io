@@ -1,4 +1,5 @@
 <section id="Introduction-section">
+</section>
 
 <title>Introduction</title>
 
@@ -18,7 +19,7 @@ In this project, our team collaborated with Babban Gona to create a two-part sol
 </div>
 
 <br>
-</section>
+
 
 
 
