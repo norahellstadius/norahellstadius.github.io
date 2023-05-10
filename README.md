@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+  <html>
+    <head>
+      <link rel="stylesheet" type="text/css" href="style.css">
+    </head>
+    <body>
+
 <section id="Introduction-section">
 </section>
 
@@ -244,3 +251,369 @@ More detail of how the classifies was finetunes can be found in the python scrip
 # Plant Health Assesment
 
 ## Overiew of the problem
+<div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Big Picture</strong></div></div>
+<div align="center"><div style="background-color: lightgrey; padding: 5px;">Soil health provides crucial information about the nutrient deficiencies in farmer's crops. By detecting and identifying the specific deficiencies, such as phosphorous or nitrogen, farmers can take appropriate actions to address these issues and optimize the health and productivity of their crops.</div></div>
+<br>
+
+<div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Goal of This Project</strong></div></div>
+<div align="center"><div style="background-color: lightgrey; padding: 5px;">Develop a segmentation and object detection system capable of accurately identifying nutrient deficiencies in plants based on leaf coloration. The system will focus on detecting three classes: Purple, Yellow, and Best practices. By providing farmers with real-time information about nutrient deficiencies in their crops, the project aims to enable proactive and targeted interventions, ultimately leading to improved crop health, increased yields, and more sustainable farming practices.</div></div>
+<br>
+
+
+## Background and Related Work
+### Assess Soil Health by Plant Color
+One way to assess soil health and nutrient deficiencies is by examining the color irregularities on plant leaves. By visually inspecting the leaves, farmers can identify signs of nutrient deficiencies and make informed decisions regarding the application of fertilizers or other corrective measures.
+
+<div style="display: flex;">
+  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
+    <h2 style="font-weight: bold;">Purple</h2>
+    <p>Phosphorus Deficiency</p>
+    <img src="images/purple.png" alt="purple plant" width="150px" height="150px">
+    <p>Phosphorus is essential for energy transfer, photosynthesis, and nutrient transport. When plants lack phosphorus, their leaves develop a purple coloration.</p>
+  </div>
+  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
+    <h2 style="font-weight: bold;">Yellow</h2>
+    <p>Nitrogen Deficiency</p>
+    <img src="images/yellow.png" alt="yellow plant" width="200" height="120">
+    <p>Nitrogen plays a key role in protein synthesis, chlorophyll production, and overall plant development. When plants lack nitrogen, their leaves exhibit a yellow coloration. </p>
+  </div>
+</div>
+
+<br>
+
+### Previous Work
+<h4>Segmentation + Classification</h4>
+To identify irregular colored pixels in an image, the Babban Gona team uses a function that analyzes the RGB values of each pixel and determines if they meet certain criteria to be considered irregular. The irregular pixels are then labeled as 1, indicating their irregularity; The unlabeled pixels are assigned a value of 0, indicating their normalcy.
+
+<br>
+<h4>Mapping with ELM</h4>
+The Extreme Learning Machine (ELM) is then used to learn the mapping from the RGB values of the pixels to the corresponding labels (0 or 1). 
+
+ELM is a type of machine learning algorithm often used for classification tasks. It aims to learn the relationship between the input (RGB values) and output (labels) through a process of training.
+
+<h4>Issues</h4>
+The above approach does not work well on both lab data and production data due to the wrong model selection:
+
+1. The ELM algorithm relies solely on the RGB values of the pixels as input features. This limited feature representation might not be sufficient to accurately discriminate between irregular and regular pixels in the images. A better classification model could incorporate additional features or utilize more advanced techniques for feature extraction to enhance the representation power.
+2. ELM might not generalize well to unseen production data. A better classification model should have a higher generalization ability, capable of effectively handling variations, noise, and diverse data distributions encountered in both the lab and production data.
+
+### Segment Anything
+In our attempt to try to segment out the plants from the images, we also tried the latest invention from Meta FAIR -- Segment Anything Model <cite>SAM</cite> (<a href="https://arxiv.org/abs/2007.09990">source</a>). 
+
+**Background**
+SAM (Segment Anything Model) is an advanced deep learning model for image segmentation tasks. SAM uses a combination of convolutional neural networks (CNNs) and transformer-based architectures to process images in a hierarchical and multi-scale manner. Here’s a high-level overview of how SAM works:
+
+<br>
+
+<h4>Backbone Network:</h4>
+
+SAM uses a pre-trained Vision Transformer, ViT as its backbone network. The backbone network is used to extract features from the input image.
+
+Feature Pyramid Network (FPN): SAM uses a feature pyramid network (FPN) to generate feature maps at multiple scales. The FPN is a series of convolutional layers that operate at different scales to extract features from the backbone network’s output. The FPN ensures that SAM can identify objects and boundaries at different levels of detail.
+Decoder Network: SAM uses a decoder network to generate a segmentation mask for the input image. The decoder network takes the output of the FPN and upsamples it to the original image size. The upsampling process enables the model to generate a segmentation mask with the same resolution as the input image.
+
+<br>
+
+<h4>Transformer-Based Architecture:</h4>
+
+SAM also uses a transformer-based architecture to refine the segmentation results. Transformers are a type of neural network architecture that are highly effective at processing sequential data, such as text or images. The transformer-based architecture is used to refine the segmentation results by incorporating contextual information from the input image.
+
+<br>
+
+<h4>Self-Supervised Learning:<h4> 
+
+SAM leverages self-supervised learning to learn from unlabeled data. This involves training the model on a large dataset of unlabeled images to learn common patterns and features in images. The learned features can then be used to improve the model’s performance on specific image segmentation tasks.
+
+<br>
+
+<h4>Panoptic Segmentation:<h4> 
+
+SAM can perform panoptic segmentation, which involves combining instance and semantic segmentation. Instance segmentation involves identifying and delineating each instance of an object within an image, while semantic segmentation involves labeling each pixel in an image with a corresponding class label. Panoptic segmentation combines these two approaches to provide a more comprehensive understanding of an image.
+
+**Overall Pipeline**
+
+<img src="images/sam_1.png" alt="Other Image" width="500px" height="300px">
+
+We first input a point or a selection of points on the image as a guide to tell SAM what to segment, each point is represented in a 2D pixel coordinate format.
+
+<div style="display: flex; justify-content: space-between;">
+  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
+    <h2 style="font-weight: bold;">One Point</h2>
+    <img src="images/stage1.png" alt="Other Image" width="100px" height="100px">
+  </div>
+  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
+    <h2 style="font-weight: bold;">Two Points</h2>
+    <img src="images/stage0.png" alt="Other Image" width="100px" height="100px">
+  </div>
+  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
+    <h2 style="font-weight: bold;">Three Points</h2>
+    <img src="images/stage2.png" alt="Other Image" width="100px" height="100px">
+  </div>
+</div>
+
+We can also not input any point and let SAM segment image with a uniform grid of points.
+
+<img src="images/sam_2.png" alt="Other Image" width="500px" height="300px">
+
+**Issue**
+
+Similar to our segmentation model, given its unsupervised nature, the final result still lacks the label for each class, therefore for our purpose (plant segmentation), we still don't know which part of the image is plant and which is not. This requires us to again use our RGB label classification algorithm to classify which label is the actual plant.
+
+### Our Approach
+<h4>The Model Pipeline</h4>
+
+1. Preprocessing of the lab training data:
+Crop the plant images based on the given bounding boxes from the lab training data.
+
+   Since the original method employed by Babban Gona team uses YoloV5, their labeled data all uses yolo format (normalized value of center and height, width of the bounding boxes). We wrote the following script to turn these into labeled dataset to be used by `torchvision.datasets.ImageFolder`
+
+    ```python
+    import os
+    import cv2
+    import numpy as np
+
+    # labels:
+    #   0: Purple_SH
+    #   1: Yellow_SH
+    #   2: BP
+
+    def yolobbox2bbox(x,y,w,h):
+        x1, y1 = x-w/2, y-h/2
+        x2, y2 = x+w/2, y+h/2
+        return x1, y1, x2, y2
+
+    # Path to the folder containing the training images
+    image_folder_path = "../soil_health_7k/images/train"
+
+    # Path to the folder containing the YOLO training data label files
+    label_folder_path = "../soil_health_7k/labels/train"
+
+    out_path = "./baban/train"
+
+    # Output folder for cropped images
+    output_folder_path = ["Purple", "Yellow", "BP"]
+
+    # Loop through each image file in the input folder
+    for image_filename in os.listdir(image_folder_path):
+        
+        # Check if the file is an image file (e.g. JPG, PNG)
+        if not image_filename.lower().endswith(('.jpg', '.jpeg', '.png')):
+            continue
+        
+        # Construct the full path to the image file
+        image_path = os.path.join(image_folder_path, image_filename)
+        
+        # Construct the full path to the corresponding label file
+        label_filename = os.path.splitext(image_filename)[0] + ".txt"
+        label_path = os.path.join(label_folder_path, label_filename)
+        
+        # Read the label file line by line
+        with open(label_path, 'r') as label_file:
+            lines = label_file.readlines()
+        
+        # Loop through each line in the label file
+        for line in lines:
+            og_line = line
+            line = line.strip().split()
+            
+            # Extract the bounding box coordinates
+            label, x, y, w, h = map(float, line)
+
+            folder_path = output_folder_path[int(label)]
+            
+            # Convert the YOLO bounding box coordinates to standard pixel location format
+            x1, y1, x2, y2 = yolobbox2bbox(x, y, w, h)
+            
+            # Read the image and crop out the specified region
+            image = cv2.imread(image_path)
+            h, w, c = image.shape # h, w, c
+
+            cropped_image = image[int(y1 * h):int(y2 * h), int(x1 * w):int(x2 * w), :]
+
+            # Save the cropped image to the output folder
+            output_filename = os.path.splitext(image_filename)[0] + "_" + str(lines.index(og_line)) + ".png"
+            output_path = os.path.join(out_path, folder_path, output_filename)
+            if not (cropped_image.shape[0] == 0 or cropped_image.shape[1] == 0):
+                cv2.imwrite(output_path, cropped_image)
+    ```
+
+   We use this script above to turn our dataset into the format of:
+
+    ```
+    train/Purple/xxx.png
+    train/Yellow/xxy.png
+    train/BP/[...]/xxz.png
+
+    val/Purple/xxx.png
+    val/Yellow/xxy.png
+    val/BP/[...]/xxz.png
+    ```
+
+2. Training the classification model:
+After we get the cropped labaled plant image from the Yolo dataset, we use it to fine-tune a classification model using the cropped plant images as input.
+
+   We've tested 5 different classification models, for each model, we trained for 10 epochs, with SGD optimizer with learning rate of 0.001 and momentum of 0.9. We swap out the last layer and change it to a linear layer with the correct number of output classes (in this case 3). Resuls are shown below:
+
+   <h4>ResNet</h4>
+
+   ResNet is a popular deep learning architecture that has demonstrated excellent performance in various computer vision tasks, including image classification. One of the main advantages of ResNet is its ability to overcome the degradation problem, which refers to the decrease in accuracy that occurs when deep neural networks are made deeper. This is achieved through the use of residual connections, which allow the model to learn residual mappings instead of direct mappings.
+
+   In the case of classifying plant soil health images, ResNet is a suitable choice as it allows for the creation of a deep model that can handle complex image features and patterns. Additionally, ResNet has already been successfully applied to similar image classification tasks, including plant disease recognition and crop classification.
+
+   The specific ResNet architecture to use will depend on the size and complexity of the dataset and the available computational resources. For instance, a smaller ResNet such as ResNet-18 or ResNet-34 may be suitable for smaller datasets, while a larger ResNet such as ResNet-50 or ResNet-101 may be better suited for larger datasets with more complex image features. Based on our computational resources, we chose to test ResNet-18 and ResNet-50 for our experiments.
+
+    <figure>
+      <img src="images/resnet-18.png" alt="Image description">
+      <figcaption>Architecture of ResNet-18</figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/resnet-50.png" alt="Image description">
+      <figcaption>Architecture of ResNet-50</figcaption>
+    </figure>
+
+    <div style="display: flex; justify-content: space-between;">
+      <div style="background-color: lightgrey; padding: 10px; width: 50%; display: inline-block; color: black; text-align: center;">
+        <h2>ResNet-18</h2>
+        <p><strong>Best Validation Accuracy:</strong> 82.3%</p>
+      </div>
+      <div style="background-color:lightgrey; padding: 10px; width: 50%; display: inline-block; color: black; text-align: center;">
+        <h2>ResNet-50</h2>
+        <p><strong>Best Validation Accuracy:</strong> 82.7%</p>
+      </div>
+    </div>
+
+    <figure>
+      <img src="images/resnet-18-learning-curve.png" alt="Image description">
+      <figcaption>ResNet-18 Accuracy</figcaption>
+    </figure>
+
+    <figure>
+      <img src="images/resnet-50-learning-curve.png" alt="Image description">
+      <figcaption>ResNet-50 Accuracy</figcaption>
+    </figure>
+
+    <h4>VGG</h4>
+
+    VGG is another popular deep learning architecture that has been shown to perform well in image classification tasks, including plant disease recognition and crop classification. VGG's architecture consists of a series of convolutional layers followed by fully connected layers, which allows the model to learn complex image features and patterns. Additionally, VGG has a simple and modular design, making it easy to implement and customize for different image classification tasks.
+
+    In the case of classifying plant soil health images, VGG could be a suitable choice as it allows for the creation of a deep model that can handle complex image features and patterns. 
+
+    It is important to note that VGG has a large number of parameters compared to other architectures such as ResNet or MobileNet, which can make it more computationally expensive to train and deploy.
+
+    In this case, we compare the performance of VGG-11 and VGG-13, both using batch normalization. 
+
+    
+
+3. Preprocessing of the production data:
+
+   (1) We use a simple <a href="https://arxiv.org/pdf/2007.09990.pdf">CNN model</a> as below to perform unsupervised image segmentation on the production data.
+
+   ```python
+   # CNN model
+   class MyNet(nn.Module):
+       def __init__(self,input_dim):
+           super(MyNet, self).__init__()
+           self.conv1 = nn.Conv2d(input_dim, args.nChannel, kernel_size=3, stride=1, padding=1 )
+           self.bn1 = nn.BatchNorm2d(args.nChannel)
+           self.conv2 = nn.ModuleList()
+           self.bn2 = nn.ModuleList()
+           for i in range(args.nConv-1):
+               self.conv2.append( nn.Conv2d(args.nChannel, args.nChannel, kernel_size=3, stride=1, padding=1 ) )
+               self.bn2.append( nn.BatchNorm2d(args.nChannel) )
+           self.conv3 = nn.Conv2d(args.nChannel, args.nChannel, kernel_size=1, stride=1, padding=0 )
+           self.bn3 = nn.BatchNorm2d(args.nChannel)
+
+       def forward(self, x):
+           x = self.conv1(x)
+           x = F.relu( x )
+           x = self.bn1(x)
+           for i in range(args.nConv-1):
+               x = self.conv2[i](x)
+               x = F.relu( x )
+               x = self.bn2[i](x)
+           x = self.conv3(x)
+           x = self.bn3(x)
+           return x
+   ```
+
+   Based on the user-defined number of clusters, the model will generate multiple clusters on each image as illustrated below:
+   <div style="display: flex; justify-content: center; text-align: center;">
+     <div style="padding: 10px; width: 90%; display:    inline-block; text-align: center; ">
+    <p><strong>An example of our segmented image (9 cluster)</strong></p>
+    <img src="images/segment1.jpg" alt="Image" width=90% height=70%>
+     </div>
+   </div>
+
+
+
+   (2) For each segmented cluster, we further classify it as plant vs. non-plant based on the percentage of green pixels within the cluster.
+
+   - To determine whether a pixel is green, we check its RGB value elementwise against the range of R: 0-150, G: 150-255, and B: 0-150.
+   - We identify a cluster as plant if the percentage of green pixels in that cluster, over the total number of pixels in the cluster, is greater than 3%.
+   <div style="display: flex; justify-content: center; text-align: center;">
+     <div style="padding: 10px; width: 90%; display: inline-block; text-align: center; ">
+    <p><strong>Accept and Reject of Clusters as Plant</strong></p>
+    <img src="images/segment.jpg" alt="Image" width=90% height=70%>
+     </div>
+   </div>
+
+   (3) If the segmented cluster is identified as a plant, the pipeline will generate a bounding box around it by setting its upper left point as the minimum x-coordinate and minimum y-coordinate of the cluster and the lower right point as the maximum x-coordinate and maximum y-coordinate of the cluster. Then, the pipeline will crop the original image using the bounding box to obtain a smaller image containing only the plant.
+   <div style="display: flex; justify-content: center; text-align: center;">
+     <div style="padding: 10px; width: 90%; display: inline-block; text-align: center; ">
+    <p><strong>Cropped Images</strong></p>
+    <img src="images/cropped.jpg" alt="Image" width=90% height=70%>
+     </div>
+   </div>
+   
+   
+     The code to accomplish this task is shown below:
+
+    ```python
+    def crop_plant(im, im_target, target, img_name, model, data, label_colours):
+        image_data = np.array([im])[0]
+        reshaped_image_data = image_data.reshape((im_target.shape[0], 3))
+        reshaped_im_target = im_target.reshape((im.shape[0], im.shape[1]))
+        mapped = {} # map from label to color
+        labels = np.unique(im_target)
+        for x in labels:
+            mask = np.where(reshaped_im_target==x)
+            masked_image = image_data[mask[0], mask[1]]
+            green_percent = process_green(masked_image, len(mask[0]))
+            if green_percent < 3:
+                mapped[x] = False
+            else:
+                mapped[x] = True
+                x1 = min(mask[0])
+                y1 = min(mask[1])
+                x2 = max(mask[0])
+                y2 = max(mask[1])
+                if x1 == x2 or y1 == y2:
+                  continue
+                # crop this part
+                cropped = im[y1:y2, x1:x2, :]
+                cv2.imwrite(args.image_dst + img_name[:-4] + f"_{x}.jpg", cropped)
+
+    def process_green(img, count):
+        green_mask = np.logical_and.reduce((
+            img[:,0] >= GREEN_LOWER[0],
+            img[:,1] >= GREEN_LOWER[1],
+            img[:,2] >= GREEN_LOWER[2],
+            img[:,0] <= GREEN_UPPER[0],
+            img[:,1] <= GREEN_UPPER[1],
+            img[:,2] <= GREEN_UPPER[2]
+      ))
+        green_pixel_count = np.count_nonzero(green_mask)
+        return int(green_pixel_count / count * 100)
+    ```
+
+4. Inference on production data:
+- Feed the cropped production images into the trained classification model to obtain the soil health predictions.
+
+5. Output:
+- Save the soil health predictions and the corresponding image crops to disk for further analysis and visualization.
+
+
+</body>
+</html>
+
