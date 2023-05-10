@@ -55,7 +55,9 @@ The development of an accurate plant classifier involved the following steps:
 4. **Selection of the Best Model:** Based on the evaluation results, the model that exhibited the best performance in terms of loss, accuracy, and F1 score was selected as the best model for further refinement.
 5. **Fine-Tuning on Non-Plant Images:** The selected best model was further fine-tuned using a dataset comprised of images from the production data that were identified as non-plant images. 
 
-![Pipeline](images/pipline.png "The pipeline used for data preprocessing and model training.")
+<div style="text-align:center;">
+  <img src="images/pipline.png" alt="The pipeline used for data preprocessing and model training"/>
+</div>
 
 ## Experimented with different architectures to find best
 
@@ -87,9 +89,9 @@ Three different architectures were explored, all utilizing the ResNet50 model as
 
 <br>
 
-
-![Summary of three models explored](images/models.png "Summary of three models explored")
-
+<div style="text-align:center;">
+  <img src="images/models.png" alt="Summary of three models explored"/>
+</div>
 
 <div align="center"><div style="background-color: #ffab40; padding: 10px;display: inline-block; color: black;">
 Before we proceed with model training and evaluation, we we will shed light on the rationale behind the decision of using transfer learning and specifically the use of Resnet.
@@ -161,7 +163,9 @@ The performance of each model was evaluated based on loss (binary cross entropy)
 
 While the plant classifier achieves a high level of accuracy, there is still room for improvement. Currently, the model incorrectly classifies dirt as a plant, which suggests that it may be focusing too much on the background of the image rather than the low-level features that distinguish plants from other objects. To address this issue, we plan to fine-tune the model using non-plant images from the production dataset. 
 
-![images classified in incorrectly](images/dirt.png "Images classified in incorrectly by best performed model (v2)")
+<div style="text-align:center;">
+  <img src="images/dirt.png" alt="Images classified in incorrectly by best performed model (v2)"/>
+</div>
 
 ## Finetuning on non-plant images from the production data
 
@@ -183,7 +187,10 @@ In summary the following steps were taken:
 
 In the jupyter notebook <cite>Find_OtherImgs.ipynb</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/Find_OtherImgs.ipynb">source</a>) you can follow steps 1-6 in more detail.
 
-![Finetune classifier on images the model performance poorly on](images/finetune_model.png "Image visualizing the above 2-6 steps")
+
+<div style="text-align:center;">
+  <img src="images/finetune_model.png" alt="Image visualizing the above 2-6 steps"/>
+</div>
 
 ### Guidance for manual labelling
 
@@ -207,7 +214,9 @@ While the first point is straightforward, the second point is more subjective an
 </div>
 
 
-![Images identified as other](images/other.png "images that were manually labeled as "other" in step 5 and clearly satisfy guideline number 1")
+<div style="text-align:center;">
+  <img src="images/other.png" alt="Images that were manually labeled as 'other' in step 5 and clearly satisfy guideline number 1"/>
+</div>
 
 ### Finetuning training details
 
