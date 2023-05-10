@@ -27,8 +27,6 @@ In this project, our team collaborated with Babban Gona to create a two-part sol
 
 # Plant Classifier 
 
-First we will introduce the classifier that could be used upstream of all computer vision models.  
-
 ## Overiew of the problem
 
 <div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Big Picture Idea</strong></div></div>
@@ -233,10 +231,14 @@ More detail of how the classifies was finetunes can be found in the python scrip
 
 ## Performance
 
-## How to download the modelsc
+## How to use the classifier
 
+The trained models can be downloaded from the GitHub repository under the "models" directory (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier">source</a>). Once downloaded, you can load the model in your Python code as follows:
 
-
+```python 
+path_model = ".../.../modelPath"
+model = tf.keras.models.load_model(path_model) 
+```
 
 <section id="plant-health-section">
 </section>
