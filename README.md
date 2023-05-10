@@ -238,7 +238,9 @@ More detail of how the classifies was finetunes can be found in the python scrip
 
 
 
-<!-- <section id="Plant-Health-section">
-    <!-- content of the project 2 section -->
-<!-- </section> --> 
+<section id="plant-health-section">
+</section>
 
+# Plant Health Assesment
+
+## Overiew of the problem
