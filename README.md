@@ -29,9 +29,8 @@ In this project our team collaborated with Babban Gona team to create a two-part
 # Plant Classifier 
 
 ## Overiew of the problem
-
-<div style="display: flex; align-items: center;">
-  <div style="flex: 1;">
+<div style="display: flex; align-items: center; justify-content: center;">
+  <div style="flex: 1; margin-right: 10px;">
     <img src="images/picture.png" width="45%">
   </div>
   <div style="flex: 2; background-color: lightgrey; padding: 5px;">
@@ -42,8 +41,8 @@ In this project our team collaborated with Babban Gona team to create a two-part
 
 <br>
 
-<div style="display: flex; align-items: center;">
-  <div style="flex: 1;">
+<div style="display: flex; align-items: center; justify-content: center;">
+  <div style="flex: 1; margin-right: 10px;">
     <img src="images/goal.png" width="45%">
   </div>
   <div style="flex: 2; background-color: lightgrey; padding: 5px;">
@@ -54,8 +53,8 @@ In this project our team collaborated with Babban Gona team to create a two-part
 
 <br>
 
-<div style="display: flex; align-items: center;">
-  <div style="flex: 1;">
+<div style="display: flex; align-items: center; justify-content: center;">
+  <div style="flex: 1; margin-right: 10px;">
     <img src="images/motivation.png" width="45%">
   </div>
   <div style="flex: 2; background-color: lightgrey; padding: 5px;">
