@@ -88,7 +88,7 @@ Three different architectures were explored, all utilizing the ResNet50 model as
 <br>
 
 
-![Summary of three models explored](images/models.png)
+![Summary of three models explored](images/models.png "Summary of three models explored")
 
 
 <div align="center"><div style="background-color: #ffab40; padding: 10px;display: inline-block; color: black;">
