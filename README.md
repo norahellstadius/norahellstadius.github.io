@@ -320,20 +320,6 @@ The code for this can be found in the file <a href="https://github.com/Harvard-I
   </div>
 </div>
 
-## How to use the final model
-The trained models can be downloaded from Google Drive using the following <a href="https://drive.google.com/drive/folders/1BxEbmD3VNKrYyoK32oofAeRCGFOYzwSJ?usp=share_link">link</a>. The models from the 3 rounds of training are found in the folders <cite>first_iteration_training</cite>, <cite>second_iteration_training</cite>, and <cite>final</cite>. 
-The model from the first round of training can be loaded using the following code,
-```python 
-path_model = ".../.../modelPath.h5"
-model = tf.keras.models.load_model(path_model) 
-```
-Whilst, the models from the second and third round of training can be loaded using the following code,
-```python
-path_model = ".../.../modelPath.h5"
-model = tf.keras.models.load_model(path_model, custom_objects={'weighted_loss_fn': weighted_loss_fn, 'f1': f1_fn,
-                                                                 'accuracy': accuracy})
-```
-
 ## Interpretability
 
 Understanding and trusting machine learning models can often be a challenging task. However, there are techniques available to enhance interpretability, such as the utilization of saliency maps generated using GradCAM heatmaps. Before we analyse our  saliency maps, let's gain a better understanding of what GradCAM is and how it works.
@@ -360,6 +346,20 @@ Similarly, when examining the saliency map for the image classified as "other," 
 
 <section id="plant-health-section">
 </section>
+
+## How to use the final model
+The trained models can be downloaded from Google Drive using the following <a href="https://drive.google.com/drive/folders/1BxEbmD3VNKrYyoK32oofAeRCGFOYzwSJ?usp=share_link">link</a>. The models from the 3 rounds of training are found in the folders <cite>first_iteration_training</cite>, <cite>second_iteration_training</cite>, and <cite>final</cite>. 
+The model from the first round of training can be loaded using the following code,
+```python 
+path_model = ".../.../modelPath.h5"
+model = tf.keras.models.load_model(path_model) 
+```
+Whilst, the models from the second and third round of training can be loaded using the following code,
+```python
+path_model = ".../.../modelPath.h5"
+model = tf.keras.models.load_model(path_model, custom_objects={'weighted_loss_fn': weighted_loss_fn, 'f1': f1_fn,
+                                                                 'accuracy': accuracy})
+```
 
 # Plant Health Assesment
 
