@@ -173,7 +173,7 @@ The performance of each model was evaluated based on loss (binary cross-entropy)
 
 ### Room to improve: motivation for fine-tuning
 
-While the plant-other classifier achieves a high level of accuracy, there is still room for improvement. Currently, the model incorrectly classifies dirt as a plant, which suggests that it may be focusing too much on the background of the image rather than the low-level features that distinguish plants from other objects. To address this issue, we plan to fine-tune the model using non-plant images from the production dataset. 
+While the plant-other classifier achieves a high level of accuracy, there is still room for improvement. At this stage the model incorrectly classified dirt as a plant, which suggests that it may be focusing too much on the background of the image rather than the low-level features that distinguish plants from other objects. To address this issue, we  to fine-tuned the model using non-plant images from the production dataset. 
 
 <div style="text-align:center;">
   <img src="images/dirt.png" alt="Images classified in incorrectly by best performed model (v2)"/>
@@ -182,7 +182,7 @@ While the plant-other classifier achieves a high level of accuracy, there is sti
 
 ### Fine-tuning on non-plant images from the production data
 
-The provided production data consists of more than 400,000 images, but only a certain number of labels were provided. We filtered out the images that did not have labels and used the previously trained classifier (Model 2) to identify which images without labels were not of plants. We fed the images without labels into the classifier and retained all images with a probability of being classified as a plant between 0 and 0.6. Recall that the classifier's output is the probability of an image being a plant (i.e P(x = plant)). Next, we manually reviewed all of the retained images and extracted the images that were of something other than plants. We used those images to fine-tune the classifier.
+The provided production data consists of more than 140,000 images, but only roughly 26, 000 labels were provided. We filtered out the images that did not have labels and used the previously trained classifier to identify which images without labels were not of plants. We fed the images without labels into the classifier and retained all images with a probability of being classified as a plant between 0 and 0.6. Recall that the classifier's output is the probability of an image being a plant (i.e P(x = plant)). Next, we manually reviewed all of the retained images and extracted the images that were of something other than plants. We used those images to fine-tune the classifier.
 
 In summary the following steps were taken: 
 
