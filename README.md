@@ -680,36 +680,25 @@ After we get the cropped labaled plant image from the Yolo dataset, we use it to
       <figcaption>An example of our segmented image (9 cluster)</figcaption>
     </figure>
 
-<!-- 
-   <div style="display: flex; justify-content: center; text-align: center;">
-     <div style="padding: 10px; width: 90%; display: inline-block; text-align: center; ">
-    <p><strong>An example of our segmented image (9 cluster)</strong></p>
-    <img src="images/segment1.jpg" alt="Image" width=90% height=70%>
-     </div>
-   </div>
- -->
-
+    <br>
 
    (2) For each segmented cluster, we further classify it as plant vs. non-plant based on the percentage of green pixels within the cluster.
 
    - To determine whether a pixel is green, we check its RGB value elementwise against the range of R: 0-150, G: 150-255, and B: 0-150.
    - We identify a cluster as plant if the percentage of green pixels in that cluster, over the total number of pixels in the cluster, is greater than 3%.
-   <div style="display: flex; justify-content: center; text-align: center;">
-     <div style="padding: 10px; width: 90%; display: inline-block; text-align: center; ">
-    <p><strong>Accept and Reject of Clusters as Plant</strong></p>
-    <img src="images/segment.jpg" alt="Image" width=90% height=70%>
-     </div>
-   </div>
+   
+    <figure>
+      <img src="images/segment.jpg" alt="Image description">
+      <figcaption>Accept and Reject of Clusters as Plant</figcaption>
+    </figure>
+   
 
    (3) If the segmented cluster is identified as a plant, the pipeline will generate a bounding box around it by setting its upper left point as the minimum x-coordinate and minimum y-coordinate of the cluster and the lower right point as the maximum x-coordinate and maximum y-coordinate of the cluster. Then, the pipeline will crop the original image using the bounding box to obtain a smaller image containing only the plant.
-   
-   <div style="display: flex; justify-content: center; text-align: center;">
-     <div style="padding: 10px; width: 90%; display: inline-block; text-align: center; ">
-    <p><strong>Cropped Images</strong></p>
-    <img src="images/cropped.jpg" alt="Image" width=90% height=70%>
-     </div>
-   </div>
-   
+
+    <figure>
+      <img src="images/cropped.jpg" alt="Image description">
+      <figcaption>Cropped Images</figcaption>
+    </figure>
    
      The code to accomplish this task is shown below:
 
