@@ -3,7 +3,7 @@
     <head>
       <link rel="stylesheet" type="text/css" href="style.css">
     </head>
-    <body> -->
+  <body> -->
 
 <section id="Introduction-section">
 </section>
@@ -389,10 +389,6 @@ Similarly, when examining the saliency map for the image classified as "other," 
 </div>
 
 
-
-
-
-
 <section id="plant-health-section">
 </section>
 
@@ -430,16 +426,15 @@ One way to assess soil health and nutrient deficiencies is by examining the colo
 <br>
 
 ### Previous Work
-<h4>Segmentation + Classification</h4>
+#### Segmentation + Classification
 To identify irregular colored pixels in an image, the Babban Gona team uses a function that analyzes the RGB values of each pixel and determines if they meet certain criteria to be considered irregular. The irregular pixels are then labeled as 1, indicating their irregularity; The unlabeled pixels are assigned a value of 0, indicating their normalcy.
 
-<br>
-<h4>Mapping with ELM</h4>
+#### Mapping with ELM
 The Extreme Learning Machine (ELM) is then used to learn the mapping from the RGB values of the pixels to the corresponding labels (0 or 1). 
 
 ELM is a type of machine learning algorithm often used for classification tasks. It aims to learn the relationship between the input (RGB values) and output (labels) through a process of training.
 
-<h4>Issues</h4>
+#### Issues 
 The above approach does not work well on both lab data and production data due to the wrong model selection:
 
 1. The ELM algorithm relies solely on the RGB values of the pixels as input features. This limited feature representation might not be sufficient to accurately discriminate between irregular and regular pixels in the images. A better classification model could incorporate additional features or utilize more advanced techniques for feature extraction to enhance the representation power.
@@ -451,30 +446,24 @@ In our attempt to try to segment out the plants from the images, we also tried t
 **Background**
 SAM (Segment Anything Model) is an advanced deep learning model for image segmentation tasks. SAM uses a combination of convolutional neural networks (CNNs) and transformer-based architectures to process images in a hierarchical and multi-scale manner. Here’s a high-level overview of how SAM works:
 
-<br>
-
-<h4>Backbone Network:</h4>
+#### Backbone Network:
 
 SAM uses a pre-trained Vision Transformer, ViT as its backbone network. The backbone network is used to extract features from the input image.
 
 Feature Pyramid Network (FPN): SAM uses a feature pyramid network (FPN) to generate feature maps at multiple scales. The FPN is a series of convolutional layers that operate at different scales to extract features from the backbone network’s output. The FPN ensures that SAM can identify objects and boundaries at different levels of detail.
 Decoder Network: SAM uses a decoder network to generate a segmentation mask for the input image. The decoder network takes the output of the FPN and upsamples it to the original image size. The upsampling process enables the model to generate a segmentation mask with the same resolution as the input image.
 
-<br>
-
-<h4>Transformer-Based Architecture:</h4>
+#### Transformer-Based Architecture:
 
 SAM also uses a transformer-based architecture to refine the segmentation results. Transformers are a type of neural network architecture that are highly effective at processing sequential data, such as text or images. The transformer-based architecture is used to refine the segmentation results by incorporating contextual information from the input image.
 
-<br>
 
-<h4>Self-Supervised Learning:<h4> 
+#### Self-Supervised Learning:
 
 SAM leverages self-supervised learning to learn from unlabeled data. This involves training the model on a large dataset of unlabeled images to learn common patterns and features in images. The learned features can then be used to improve the model’s performance on specific image segmentation tasks.
 
-<br>
 
-<h4>Panoptic Segmentation:<h4> 
+#### Panoptic Segmentation:
 
 SAM can perform panoptic segmentation, which involves combining instance and semantic segmentation. Instance segmentation involves identifying and delineating each instance of an object within an image, while semantic segmentation involves labeling each pixel in an image with a corresponding class label. Panoptic segmentation combines these two approaches to provide a more comprehensive understanding of an image.
 
@@ -508,7 +497,7 @@ We can also not input any point and let SAM segment image with a uniform grid of
 Similar to our segmentation model, given its unsupervised nature, the final result still lacks the label for each class, therefore for our purpose (plant segmentation), we still don't know which part of the image is plant and which is not. This requires us to again use our RGB label classification algorithm to classify which label is the actual plant.
 
 ### Our Approach
-<h4>The Model Pipeline</h4>
+#### The Model Pipeline
 
 1. Preprocessing of the lab training data:
 Crop the plant images based on the given bounding boxes from the lab training data.
@@ -602,7 +591,7 @@ After we get the cropped labaled plant image from the Yolo dataset, we use it to
 
    We've tested 5 different classification models, for each model, we trained for 10 epochs, with SGD optimizer with learning rate of 0.001 and momentum of 0.9. We swap out the last layer and change it to a linear layer with the correct number of output classes (in this case 3). Resuls are shown below:
 
-   <h4>ResNet</h4>
+   #### ResNet 
 
    ResNet is a popular deep learning architecture that has demonstrated excellent performance in various computer vision tasks, including image classification. One of the main advantages of ResNet is its ability to overcome the degradation problem, which refers to the decrease in accuracy that occurs when deep neural networks are made deeper. This is achieved through the use of residual connections, which allow the model to learn residual mappings instead of direct mappings.
 
@@ -762,6 +751,4 @@ After we get the cropped labaled plant image from the Yolo dataset, we use it to
 - Save the soil health predictions and the corresponding image crops to disk for further analysis and visualization.
 
 
-</body>
-</html>
 
