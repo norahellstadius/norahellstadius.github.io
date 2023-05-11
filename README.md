@@ -65,7 +65,7 @@ The development of an accurate plant-other classifier involved the following ste
 6. **Fine-Tuning on Dirt-Plant Images:** The models underwent fine-tuning using a dataset comprised of images of dirt for the "other" class and images of plants for the "plant" class, in order to correct for a mis-classification weakness of the models.
 7. **Evaluation of Model Performance:** The final evaluation of each models' performance was analyzed using the same metrics as before. 
 <div style="text-align:center;">
-  <img src="images/pipline.png" alt="The pipeline used for data preprocessing and model training"/>
+  <img src="images/pipeline.png" alt="The pipeline used for data preprocessing and model training"/>
   <figcaption>The pipeline used for data preprocessing and model training.</figcaption>
 </div>
 
