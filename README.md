@@ -21,7 +21,7 @@ In this project our team collaborated with Babban Gona team to create a two-part
 
 <br>
 <div style="text-align:center; border: 2px solid #4285f4; padding: 10px;">
-  <h2>Plant Health Assesment</h2>
+  <h2>Soil Health Assesment</h2>
   <p>The objective of this part of project was to differentiate plant regions from soil and categorize plants as yellow, purple, or best practice. The Babban Gona team had previously developed an object detection model with 80% accuracy on laboratory data, but encountered difficulties when applied to production data due to the lack of labeled production data.To address this challenge, an unsupervised segmentation algorithm was utilized, employing a CNN for feature extraction and clustering, and training the CNN on loss based on the closeness of features and spatial continuity. An algorithm was then employed to mask out labels that were not plant-based based on their RGB color and green color percentage. Finally, individual plant images were input into a trained ResNet-50 for soil health classification. The proposed approach was benchmarked against the Yolov5 method used by the Babban Gona team to evaluate its performance on noisy production data. 
 </p>
 </div>
@@ -360,7 +360,7 @@ model = tf.keras.models.load_model(path_model, custom_objects={'weighted_loss_fn
                                                                  'accuracy': accuracy})
 ```
 
-# Plant Health Assesment
+# Soil Health Assesment
 
 ## Overiew of the problem
 <div align="center"><div style="background-color: lightgrey; padding: 5px;"><strong>Big Picture</strong></div></div>
