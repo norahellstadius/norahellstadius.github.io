@@ -616,7 +616,9 @@ After we get the cropped labaled plant image from the Yolo dataset, we use it to
 
     In this case, we compare the performance of VGG-11 and VGG-13, both using batch normalization. 
 
-    
+VGG-11 w/ batch normalization  | VGG-13 w/ batch normalization
+:-------------------------:|:-------------------------:
+<img src="images/VCG11.png" width="500" />*Best Valid Acc: 87.02%* |  <img src="images/VCG13.png" width="500" />*Best Valid Acc: 88.92%*
 
 3. Preprocessing of the production data:
 
