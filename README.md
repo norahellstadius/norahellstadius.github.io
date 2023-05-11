@@ -362,32 +362,6 @@ Similarly, when examining the saliency map for the image classified as "other," 
   <figcaption>Saliency maps for images classified as other</figcaption>
 </div>
 
-## Interpretability
-
-Understanding and trusting machine learning models can often be a challenging task. However, there are techniques available to enhance interpretability, such as the utilization of saliency maps generated using GradCAM heatmaps. Before we analyse our  saliency maps, let's gain a better understanding of what GradCAM is and how it works.
-
-<div align="center">
-  <div style="background-color: #ffab40; padding: 10px; display: inline-block; color: black;">
-    <h2>What is GradCAM?</h2>
-    <p>GradCAM, short for Gradient-weighted Class Activation Mapping, is a visualization technique employed to interpret and comprehend the decision-making process of a convolutional neural network (CNN). By employing GradCAM, we can identify and highlight the significant regions or features within an input image that contribute most significantly to the network's prediction. The primary objective of utilizing GradCAM heatmaps is to provide visual explanations for the model's predictions by emphasizing the regions of the input image that exert the greatest influence on a particular prediction. This methodology aids in comprehending the model's decision-making process and identifying which portions of the input image are most relevant for a specific prediction.</p>
-  </div>
-</div>
-
-Below we see the saliency maps of images classified as "other" and images classified as "plants." The saliency maps generated for these images reveal interesting insights into the model's behavior.Upon observing the saliency map for the image classified as a plant, we can ascertain that the model accurately focuses on the relevant part, namely the plant, in order to classify it correctly. This suggests that the model recognizes the distinctive features of plants and utilizes them to make accurate predictions.
-Similarly, when examining the saliency map for the image classified as "other," we notice that the model concentrates on the head of the motor cycle.
-
-<div style="text-align:center;">
-  <img src="images/saliency_plant.png" alt="Image visualizing the above 2-6 steps"/>
-  <figcaption>Saliency maps for images classified as plant</figcaption>
-</div>
-
-
-<div style="text-align:center;">
-  <img src="images/saliency_other.png" alt="Image visualizing the above 2-6 steps"/>
-  <figcaption>Saliency maps for images classified as other</figcaption>
-</div>
-
-
 <section id="plant-health-section">
 </section>
 
@@ -469,33 +443,38 @@ SAM leverages self-supervised learning to learn from unlabeled data. This involv
 
 SAM can perform panoptic segmentation, which involves combining instance and semantic segmentation. Instance segmentation involves identifying and delineating each instance of an object within an image, while semantic segmentation involves labeling each pixel in an image with a corresponding class label. Panoptic segmentation combines these two approaches to provide a more comprehensive understanding of an image.
 
-**Overall Pipeline**
+##### Overall Pipeline
 
-<img src="images/sam_1.png" alt="Other Image" width="500px" height="300px">
+<div style="text-align: center;">
+  <img src="images/sam_1.png" alt="Other Image" width="500px" height="300px">
+</div>
 
 We first input a point or a selection of points on the image as a guide to tell SAM what to segment, each point is represented in a 2D pixel coordinate format.
 
-<div style="display: flex; justify-content: space-between;">
-  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
-    <h2 style="font-weight: bold;">One Point</h2>
-    <img src="images/stage1.png" alt="Other Image" width="100px" height="100px">
-  </div>
-  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
-    <h2 style="font-weight: bold;">Two Points</h2>
-    <img src="images/stage0.png" alt="Other Image" width="100px" height="100px">
-  </div>
-  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
-    <h2 style="font-weight: bold;">Three Points</h2>
-    <img src="images/stage2.png" alt="Other Image" width="100px" height="100px">
+<div style="display: flex; justify-content: center;">
+  <div style="display: flex; justify-content: space-between; width: 80%;">
+    <div style="border: 2px solid #4285f4; padding: 10px; width: 30%; display: inline-block; text-align: center;">
+      <h2 style="font-weight: bold;">One Point</h2>
+      <img src="images/stage1.png" alt="Other Image" width="100px" height="100px">
+    </div>
+    <div style="border: 2px solid #4285f4; padding: 10px; width: 30%; display: inline-block; text-align: center;">
+      <h2 style="font-weight: bold;">Two Points</h2>
+      <img src="images/stage0.png" alt="Other Image" width="100px" height="100px">
+    </div>
+    <div style="border: 2px solid #4285f4; padding: 10px; width: 30%; display: inline-block; text-align: center;">
+      <h2 style="font-weight: bold;">Three Points</h2>
+      <img src="images/stage2.png" alt="Other Image" width="100px" height="100px">
+    </div>
   </div>
 </div>
 
 We can also not input any point and let SAM segment image with a uniform grid of points.
 
-<img src="images/sam_2.png" alt="Other Image" width="500px" height="300px">
+<div style="text-align: center;">
+  <img src="images/sam_2.png" alt="Other Image" width="500px" height="300px">
+</div>
 
-**Issue**
-
+##### Issue
 Similar to our segmentation model, given its unsupervised nature, the final result still lacks the label for each class, therefore for our purpose (plant segmentation), we still don't know which part of the image is plant and which is not. This requires us to again use our RGB label classification algorithm to classify which label is the actual plant.
 
 ### Our Approach
