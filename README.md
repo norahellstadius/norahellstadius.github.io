@@ -407,20 +407,23 @@ Similarly, when examining the saliency map for the image classified as "other," 
 ### Assess Soil Health by Plant Color
 One way to assess soil health and nutrient deficiencies is by examining the color irregularities on plant leaves. By visually inspecting the leaves, farmers can identify signs of nutrient deficiencies and make informed decisions regarding the application of fertilizers or other corrective measures.
 
-<div style="display: flex;">
-  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
-    <h2 style="font-weight: bold;">Purple</h2>
-    <p>Phosphorus Deficiency</p>
-    <img src="images/purple.png" alt="purple plant" width="150px" height="150px">
-    <p>Phosphorus is essential for energy transfer, photosynthesis, and nutrient transport. When plants lack phosphorus, their leaves develop a purple coloration.</p>
-  </div>
-  <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; display: inline-block; text-align: center;">
-    <h2 style="font-weight: bold;">Yellow</h2>
-    <p>Nitrogen Deficiency</p>
-    <img src="images/yellow.png" alt="yellow plant" width="200" height="120">
-    <p>Nitrogen plays a key role in protein synthesis, chlorophyll production, and overall plant development. When plants lack nitrogen, their leaves exhibit a yellow coloration. </p>
+<div style="display: flex; justify-content: center;">
+  <div style="display: flex; flex-wrap: wrap; justify-content: center;">
+    <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; text-align: center;">
+      <h2 style="font-weight: bold;">Purple</h2>
+      <p>Phosphorus Deficiency</p>
+      <img src="images/purple.png" alt="purple plant" width="150px" height="150px">
+      <p>Phosphorus is essential for energy transfer, photosynthesis, and nutrient transport. When plants lack phosphorus, their leaves develop a purple coloration.</p>
+    </div>
+    <div style="border: 2px solid #4285f4; padding: 10px; width: 45%; text-align: center;">
+      <h2 style="font-weight: bold;">Yellow</h2>
+      <p>Nitrogen Deficiency</p>
+      <img src="images/yellow.png" alt="yellow plant" width="200" height="120">
+      <p>Nitrogen plays a key role in protein synthesis, chlorophyll production, and overall plant development. When plants lack nitrogen, their leaves exhibit a yellow coloration.</p>
+    </div>
   </div>
 </div>
+
 
 <br>
 
@@ -738,7 +741,7 @@ After we get the cropped labaled plant image from the Yolo dataset, we use it to
       ))
         green_pixel_count = np.count_nonzero(green_mask)
         return int(green_pixel_count / count * 100)
-
+  ```
 
 4. Inference on production data:
 - Feed the cropped production images into the trained classification model to obtain the soil health predictions.
