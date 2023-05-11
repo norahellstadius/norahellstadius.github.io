@@ -182,10 +182,6 @@ While the plant-other classifier achieves a high level of accuracy, there is sti
 
 ### Fine-tuning on non-plant images from the production data
 
-<div style="border: 2px solid  #ffab40; padding: 10px;">
-    <p><strong>Note:</strong> The below was done for all models (i.e v1, v2, v3) however model 2 (i.e v2) achieved the best performance and hence we proceed by explaining this section with only focusing on the fine-tuning of model 2.</p>
-</div>
-
 The provided production data consists of more than 400,000 images, but only a certain number of labels were provided. We filtered out the images that did not have labels and used the previously trained classifier (Model 2) to identify which images without labels were not of plants. We fed the images without labels into the classifier and retained all images with a probability of being classified as a plant between 0 and 0.6. Recall that the classifier's output is the probability of an image being a plant (i.e P(x = plant)). Next, we manually reviewed all of the retained images and extracted the images that were of something other than plants. We used those images to fine-tune the classifier.
 
 In summary the following steps were taken: 
