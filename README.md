@@ -144,26 +144,26 @@ The performance of each model was evaluated based on loss (binary cross-entropy)
       <tr>
         <th>Metrics \ Models</th>
         <th>V1</th>
-        <th><span style="color: #ffab40">V2</span></th>
+        <th>V2</th>
         <th>V3</th>
       </tr>
       <tr>
         <td>Loss</td>
-        <td>0.435</td>
-        <td><span style="color: #ffab40">0.431</span></td>
-        <td>0.443</td>
+        <td>0.697</td>
+        <td>0.616</td>
+        <td>0.500</td>
       </tr>
       <tr>
         <td>Accuracy</td>
-        <td>0.918</td>
-        <td><span style="color: #ffab40">0.925</span></td>
-        <td>0.924</td>
+        <td>0.893</td>
+        <td>0.887</td>
+        <td>0.912</td>
       </tr>
       <tr>
         <td>F1 Score</td>
-        <td>0.949</td>
-        <td><span style="color: #ffab40">0.953</span></td>
-        <td>0.952</td>
+        <td>0.933</td>
+        <td>0.929</td>
+        <td>0.944</td>
       </tr>
     </table>
   </div>
@@ -208,27 +208,39 @@ In the jupyter notebook <cite>Find_OtherImgs.ipynb</cite> (<a href="https://gith
     <table>
       <tr>
         <th>Metrics \ Models</th>
-        <th>V1 fine-tuned</th>
-        <th><span style="color: #ffab40">V2 fine-tuned</span></th>
-        <th>V3 fine-tuned</th>
+        <th>V1</th>
+        <th>V2</th>
+        <th>V3</th>
+        <th>V1 fine-tuned (R1)</th>
+        <th>V2 fine-tuned (R1)</th>
+        <th>V3 fine-tuned (R1)</th>
       </tr>
       <tr>
         <td>Loss</td>
-        <td>0.435</td>
-        <td><span style="color: #ffab40">0.431</span></td>
-        <td>0.443</td>
+        <td>0.697</td>
+        <td>0.616</td>
+        <td>0.500</td>
+        <td>0.419</td>
+        <td>0.503</td>
+        <td>0.455</td>
       </tr>
       <tr>
         <td>Accuracy</td>
-        <td>0.918</td>
-        <td><span style="color: #ffab40">0.925</span></td>
-        <td>0.924</td>
+        <td>0.893</td>
+        <td>0.887</td>
+        <td>0.912</td>
+        <td>0.912</td>
+        <td>0.925</td>
+        <td>0.931</td>
       </tr>
       <tr>
         <td>F1 Score</td>
-        <td>0.949</td>
-        <td><span style="color: #ffab40">0.953</span></td>
-        <td>0.952</td>
+        <td>0.933</td>
+        <td>0.929</td>
+        <td>0.944</td>
+        <td>0.942</td>
+        <td>0.950</td>
+        <td>0.955</td>
       </tr>
     </table>
   </div>
@@ -294,27 +306,51 @@ The code for this can be found in the file <a href="https://github.com/Harvard-I
     <table>
       <tr>
         <th>Metrics \ Models</th>
+        <th>V1</th>
+        <th>V2</th>
+        <th>V3</th>
+        <th>V1 fine-tuned (R1)</th>
+        <th>V2 fine-tuned (R1)</th>
+        <th>V3 fine-tuned (R1)</th>
         <th>V1 fine-tuned (R2)</th>
-        <th><span style="color: #ffab40">V2 fine-tuned (R2)</span></th>
+        <th>V2 fine-tuned (R2)</th>
         <th>V3 fine-tuned (R2)</th>
       </tr>
       <tr>
         <td>Loss</td>
-        <td>0.435</td>
-        <td><span style="color: #ffab40">0.431</span></td>
-        <td>0.443</td>
+        <td>0.697</td>
+        <td>0.616</td>
+        <td>0.500</td>
+        <td>0.419</td>
+        <td>0.503</td>
+        <td>0.455</td>
+	<td>0.360</td>
+        <td>0.470</td>
+        <td>0.331</td>
       </tr>
       <tr>
         <td>Accuracy</td>
-        <td>0.918</td>
-        <td><span style="color: #ffab40">0.925</span></td>
-        <td>0.924</td>
+        <td>0.893</td>
+        <td>0.887</td>
+        <td>0.912</td>
+        <td>0.912</td>
+        <td>0.925</td>
+        <td>0.931</td>
+        <td>0.937</td>
+        <td>0.925</td>
+        <td>0.937</td>
       </tr>
       <tr>
         <td>F1 Score</td>
-        <td>0.949</td>
-        <td><span style="color: #ffab40">0.953</span></td>
-        <td>0.952</td>
+        <td>0.933</td>
+        <td>0.929</td>
+        <td>0.944</td>
+        <td>0.942</td>
+        <td>0.950</td>
+        <td>0.955</td>
+	<td>0.959</td>
+        <td>0.951</td>
+        <td>0.960</td>
       </tr>
     </table>
   </div>
