@@ -423,6 +423,15 @@ We use a simple CNN model to do feature clustering.
 
 ![](images/image_segmentation_2.png)
 
+### Extra Scribble Feature
+
+We can briefly scribble the image and use that to guide the segmentation algorithm.
+
+![](images/scribble_loss.png)*New loss function with scribble*
+
+By using this scribble loss, it encourages the algorithm to make features close to the scribble the same class as the scribble, 
+which means that you want to scribble on features that you think should be classified as the same class.
+
 ### Segment Anything
 In our attempt to try to segment out the plants from the images, we also tried the latest invention from Meta FAIR -- Segment Anything Model <cite>SAM</cite> (<a href="https://arxiv.org/abs/2007.09990">source</a>). 
 
