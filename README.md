@@ -342,13 +342,11 @@ model = tf.keras.models.load_model(path_model, custom_objects={'weighted_loss_fn
 
 Understanding and trusting machine learning models can often be a challenging task. However, there are techniques available to enhance interpretability, such as the utilization of saliency maps generated using GradCAM heatmaps. Before we analyse our  saliency maps, let's gain a better understanding of what GradCAM is and how it works.
 
-<div align="center">
-  <div style="background-color: #ffab40; padding: 10px; display: inline-block; color: black;">
-    <h2>What is GradCAM?</h2>
-    <p>GradCAM, short for Gradient-weighted Class Activation Mapping, is a visualization technique employed to interpret and comprehend the decision-making process of a convolutional neural network (CNN). By employing GradCAM, we can identify and highlight the significant regions or features within an input image that contribute most significantly to the network's prediction. The primary objective of utilizing GradCAM heatmaps is to provide visual explanations for the model's predictions by emphasizing the regions of the input image that exert the greatest influence on a particular prediction. This methodology aids in comprehending the model's decision-making process and identifying which portions of the input image are most relevant for a specific prediction.</p>
-  </div>
+<div style="border: 2px solid  #ffab40; padding: 10px;">
+    <p><strong>What is GradCAM?</strong> GradCAM, short for Gradient-weighted Class Activation Mapping, is a visualization technique employed to interpret and comprehend the decision-making process of a convolutional neural network (CNN). By employing GradCAM, we can identify and highlight the significant regions or features within an input image that contribute most significantly to the network's prediction. The primary objective of utilizing GradCAM heatmaps is to provide visual explanations for the model's predictions by emphasizing the regions of the input image that exert the greatest influence on a particular prediction. This methodology aids in comprehending the model's decision-making process and identifying which portions of the input image are most relevant for a specific prediction.</p>
 </div>
 
+<br>
 Below we see the saliency maps of images classified as "other" and images classified as "plants." The saliency maps generated for these images reveal interesting insights into the model's behavior.Upon observing the saliency map for the image classified as a plant, we can ascertain that the model accurately focuses on the relevant part, namely the plant, in order to classify it correctly. This suggests that the model recognizes the distinctive features of plants and utilizes them to make accurate predictions.
 Similarly, when examining the saliency map for the image classified as "other," we notice that the model concentrates on the head of the motor cycle.
 
@@ -357,6 +355,7 @@ Similarly, when examining the saliency map for the image classified as "other," 
   <figcaption>Saliency maps for images classified as plant</figcaption>
 </div>
 
+<br>
 
 <div style="text-align:center;">
   <img src="images/saliency_other.png" alt="Image visualizing the above 2-6 steps"/>
