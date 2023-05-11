@@ -106,7 +106,7 @@ When confronted with the task of building an effective image classifier, transfe
 Now, you may be wondering, why ResNet? ResNet, short for Residual Network, is a powerful deep learning architecture that has demonstrated state-of-the-art performance on various computer vision tasks. By leveraging the wisdom extracted from a large-scale dataset like ImageNet, we can save substantial computational resources and significantly reduce the time required for training.
 
 
-## Training the Models
+## Training the Models 
 <p>We employed the Imagenet dataset to represent the "other" class, while utilizing labeled production data for the "plant" class. The choice of Imagenet stemmed from time constraints, as we lacked the capacity to individually examine over 300,000 unlabeled (???) images to identify non-plant ones. The imagenet dataset was taken from <cite>Kaggle</cite> (<a href="https://www.kaggle.com/datasets/ifigotin/imagenetmini-1000">source</a>). Consequently, we opted to employ the best-performing model to identify these images and manually review them later. By doing so, we can extract non-plant images, which are subsequently used to fine-tune the top model. This process takes place in step 5.</p>
 
 <div style="display: flex; justify-content: space-between;">
@@ -176,7 +176,7 @@ While the plant-other classifier achieves a high level of accuracy, there is sti
 ### Fine-tuning on non-plant images from the production data
 
 <div style="border: 2px solid  #ffab40; padding: 10px;">
-    <p><strong>Note:</strong> The below was done for all models (i.e v1, v2, v3) however model 2 (i.e v2) achieved the best performance and hence we proceed by explaining this section with only focusing on the finetuning of model 2.</p>
+    <p><strong>Note:</strong> The below was done for all models (i.e v1, v2, v3) however model 2 (i.e v2) achieved the best performance and hence we proceed by explaining this section with only focusing on the fine-tuning of model 2.</p>
 </div>
 
 The provided production data consists of more than 400,000 images, but only a certain number of labels were provided. We filtered out the images that did not have labels and used the previously trained classifier (Model 2) to identify which images without labels were not of plants. We fed the images without labels into the classifier and retained all images with a probability of being classified as a plant between 0 and 0.6. Recall that the classifier's output is the probability of an image being a plant (i.e P(x = plant)). Next, we manually reviewed all of the retained images and extracted the images that were of something other than plants. We used those images to fine-tune the classifier.
@@ -188,7 +188,7 @@ In summary the following steps were taken:
 3. **Use trained classfier:** Use a pre-trained image classifier to predict the probability of each image belonging to a plant class.
 4. **Select images classified as non plant:** Keep the images with a probability less than or equal to 0.6 of belonging to a plant class.
 5. **Manually label:** Visualize the selected images and manually verify which ones are non-plants.
-6. **Fine tune model:** Create a new dataset with the verified non-plant images and fine-tune the pre-trained model.
+6. **Fine-tune model:** Create a new dataset with the verified non-plant images and fine-tune the pre-trained model.
 
 
 In the jupyter notebook <cite>Find_OtherImgs.ipynb</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/train_production_classifier/Find_OtherImgs.ipynb">source</a>) you can follow steps 1-6 in more detail.
@@ -199,7 +199,37 @@ In the jupyter notebook <cite>Find_OtherImgs.ipynb</cite> (<a href="https://gith
   <figcaption>Image visualizing the above 2-6 steps</figcaption>
 </div>
 
-### Performance
+### Evaluation of Model Performance
+<div style="margin: auto; text-align: center;">
+  <div style="display: inline-block;">
+    <table>
+      <tr>
+        <th>Metrics \ Models</th>
+        <th>V1 fine-tuned</th>
+        <th><span style="color: #ffab40">V2 fine-tuned</span></th>
+        <th>V3 fine-tuned</th>
+      </tr>
+      <tr>
+        <td>Loss</td>
+        <td>0.435</td>
+        <td><span style="color: #ffab40">0.431</span></td>
+        <td>0.443</td>
+      </tr>
+      <tr>
+        <td>Accuracy</td>
+        <td>0.918</td>
+        <td><span style="color: #ffab40">0.925</span></td>
+        <td>0.924</td>
+      </tr>
+      <tr>
+        <td>F1 Score</td>
+        <td>0.949</td>
+        <td><span style="color: #ffab40">0.953</span></td>
+        <td>0.952</td>
+      </tr>
+    </table>
+  </div>
+</div>
 
 ### Implementation Details
 #### Guidance for manual labelling
@@ -241,21 +271,51 @@ In step 6, we use a weighted loss function motivated by the fact that rather the
         return weighted_bce_loss
 ```
 
-More details of how the classifiers were finetuned can be found in the python script <cite>finetune_classifiers.py</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/plant_other_classifier/finetune_classifiers.py">source</a>)
+More details of how the classifiers were fine-tuned can be found in the python script <cite>finetune_classifiers.py</cite> (<a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/plant_other_classifier/finetune_classifiers.py">source</a>)
 
 ## Fine-tuning - Round Two 
 
-### Room to improve (round 2): motivation for finetuning (again)
-As previously mentioned, the model confuses dirt with plants. Although the first-round of finetuning, improved the models' performance. We identified a way of repurposing the other model that was developed in this project, to improve the models even further. We used the segmentation model, that was created for soil health, to identify images that contained a large region of dirt in the images. We then cropped these images to remove plants. These dirt images were then used as the "other" class in the second iteration of finetuning.
+### Room to improve (round 2): motivation for fine-tuning (again)
+As previously mentioned, the model confuses dirt with plants. Although the first-round of fine-tuning, improved the models' performance. We identified a way of repurposing the other model that was developed in this project, to improve the models even further. We used the segmentation model, that was created for soil health, to identify images that contained a large region of dirt in the images. We then cropped these images to remove plants. These dirt images were then used as the "other" class in the second iteration of fine-tuning.
 
 ### Fine-tuning on dirt images identified by the segmentation model
-In order to complete the second round of finetuning, the following steps were taken:
+In order to complete the second round of fine-tuning, the following steps were taken:
 1. **Get images with large dirt region:** Using the segmentation model, to extract images from the production dataset that contain a large region of dirt.
 2. **Crop images:** Crop the images to remove plants, creating a dataset of dirt images.
-3. **Fine tune model:** Finetune the model from the last round of finetuning using the new dataset, in an attempt to correct the model from classifying dirt as plant.
+3. **Fine-tune model:** Fine-tune the model from the last round of fine-tuning using the new dataset, in an attempt to correct the model from classifying dirt as plant.
 
 The code for this can be found in the file <a href="https://github.com/Harvard-IACS/Babban_Gona/blob/main/plant_other_classifier/finetune_dirt.py">finetune_dirt.py</a>.
-### Performance
+### Evaluation of Model Performance
+<div style="margin: auto; text-align: center;">
+  <div style="display: inline-block;">
+    <table>
+      <tr>
+        <th>Metrics \ Models</th>
+        <th>V1 fine-tuned (R2)</th>
+        <th><span style="color: #ffab40">V2 fine-tuned (R2)</span></th>
+        <th>V3 fine-tuned (R2)</th>
+      </tr>
+      <tr>
+        <td>Loss</td>
+        <td>0.435</td>
+        <td><span style="color: #ffab40">0.431</span></td>
+        <td>0.443</td>
+      </tr>
+      <tr>
+        <td>Accuracy</td>
+        <td>0.918</td>
+        <td><span style="color: #ffab40">0.925</span></td>
+        <td>0.924</td>
+      </tr>
+      <tr>
+        <td>F1 Score</td>
+        <td>0.949</td>
+        <td><span style="color: #ffab40">0.953</span></td>
+        <td>0.952</td>
+      </tr>
+    </table>
+  </div>
+</div>
 
 ## How to use the final model
 The trained models can be downloaded from Google Drive using the following <a href="https://drive.google.com/drive/folders/1DTMsCTwV_C5tZvaf3JcWsFjEi17vn51M">link</a>. The models from the 3 rounds of training are found in the folders <cite>first_iteration_training</cite>, <cite>second_iteration_training</cite>, and <cite>final</cite>. 
