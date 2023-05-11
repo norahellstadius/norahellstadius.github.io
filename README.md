@@ -321,7 +321,7 @@ The code for this can be found in the file <a href="https://github.com/Harvard-I
 </div>
 
 ## How to use the final model
-The trained models can be downloaded from Google Drive using the following <a href="https://drive.google.com/drive/folders/1DTMsCTwV_C5tZvaf3JcWsFjEi17vn51M">link</a>. The models from the 3 rounds of training are found in the folders <cite>first_iteration_training</cite>, <cite>second_iteration_training</cite>, and <cite>final</cite>. 
+The trained models can be downloaded from Google Drive using the following <a href="https://drive.google.com/drive/folders/1BxEbmD3VNKrYyoK32oofAeRCGFOYzwSJ?usp=share_link">link</a>. The models from the 3 rounds of training are found in the folders <cite>first_iteration_training</cite>, <cite>second_iteration_training</cite>, and <cite>final</cite>. 
 The model from the first round of training can be loaded using the following code,
 ```python 
 path_model = ".../.../modelPath.h5"
