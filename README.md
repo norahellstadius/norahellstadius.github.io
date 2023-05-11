@@ -329,8 +329,7 @@ Understanding and trusting machine learning models can often be a challenging ta
 </div>
 
 <br>
-Below we see the saliency maps of images classified as "other" and images classified as "plants." The saliency maps generated for these images reveal interesting insights into the model's behavior.Upon observing the saliency map for the image classified as a plant, we can ascertain that the model accurately focuses on the relevant part, namely the plant, in order to classify it correctly. This suggests that the model recognizes the distinctive features of plants and utilizes them to make accurate predictions.
-Similarly, when examining the saliency map for the image classified as "other," we notice that the model concentrates on the head of the motor cycle.
+Below we see the saliency maps of images classified as "other" and images classified as "plants." As mentioned previously, before we had an issue that the model was focusing on the background (i.e dirt) to classify an image as a plant. However after fine-tuning, the saliency maps reveal that the model accurately focuses on the relevant part, namely the plant, in order to classify it correctly. This suggests that the model recognizes the distinctive features of plants and utilizes them to make accurate predictions. Similarly, when examining the saliency map for the image classified as "other," we notice that the model concentrates on the head of the motor cycle.
 
 <div style="text-align:center;">
   <img src="images/saliency_plant.png" alt="Image visualizing the above 2-6 steps"/>
