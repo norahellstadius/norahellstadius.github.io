@@ -411,6 +411,30 @@ The above approach does not work well on both lab data and production data due t
 1. The ELM algorithm relies solely on the RGB values of the pixels as input features. This limited feature representation might not be sufficient to accurately discriminate between irregular and regular pixels in the images. A better classification model could incorporate additional features or utilize more advanced techniques for feature extraction to enhance the representation power.
 2. ELM might not generalize well to unseen production data. A better classification model should have a higher generalization ability, capable of effectively handling variations, noise, and diverse data distributions encountered in both the lab and production data.
 
+## Model Pipeline
+![](images/SoilHealthPipeline.png)
+
+### Image Segmentation
+
+We use a simple CNN model to do feature clustering.
+
+![](images/image_segmentation_feature_clustering.png)
+
+![](images/image_segmentation_2.png)
+
+### Extra Scribble Feature
+
+We can briefly scribble the image and use that to guide the segmentation algorithm.
+
+![](images/scribble_loss.png)*New loss function with scribble*
+
+By using this scribble loss, it encourages the algorithm to make features close to the scribble the same class as the scribble, 
+which means that you want to scribble on features that you think should be classified as the same class.
+
+![](images/scribble_show.jpg)*Original image*  | ![](images/scribble_scribble.png)*Scribble*
+:-------------------------:|:-------------------------:
+![](images/scribble_with.png)*With scribble*  |  ![](images/scribble_without.png)*Without scribble*
+
 ### Segment Anything
 In our attempt to try to segment out the plants from the images, we also tried the latest invention from Meta FAIR -- Segment Anything Model <cite>SAM</cite> (<a href="https://arxiv.org/abs/2007.09990">source</a>). 
 
